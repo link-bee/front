@@ -5,7 +5,7 @@ type sideOpenProps = {
     setSideOpen : Function;
 };
 
-export default function SideNav(props:sideOpenProps){
+export default function MobileSideNav(props:sideOpenProps){
     const sideBarRef = useRef<HTMLDivElement>(null);
 
     const onClickOutside = (event: Event) => {

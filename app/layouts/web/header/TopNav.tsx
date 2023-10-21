@@ -2,7 +2,7 @@
 import React, {useEffect, useState} from "react";
 import MobileSideNav from "@/app/layouts/mobile/side/MobileSideNav";
 
-export default function MobileTopNav(){
+export default function TopNav(){
     const [sideOpen, setSideOpen] = useState(false);
     const [curState, setCurState] = useState<string>()
 
@@ -32,8 +32,6 @@ export default function MobileTopNav(){
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </header>
-            <MobileSideNav sideOpen={sideOpen} setSideOpen={setSideOpen}/>
-
         </>
     )
 }

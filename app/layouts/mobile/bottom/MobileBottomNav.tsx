@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-export default function BottomNav(){
+export default function MobileBottomNav(){
     return(
         <>
             <div className="bottom_nav">

@@ -1,11 +1,14 @@
 'use client'
 import React, {useEffect, useState} from "react";
-import SideNav from "@/app/layouts/mobile/side/SideNav";
+import MobileSideNav from "@/app/layouts/mobile/side/MobileSideNav";
 
-export default function TopNav(){
+export default function MobileTopNav(){
     const [sideOpen, setSideOpen] = useState(false);
     const [curState, setCurState] = useState<string>()
 
+    useEffect(() => {
+        setCurState('recommend')
+    }, []);
     return(
         <>
             <header>
@@ -29,7 +32,7 @@ export default function TopNav(){
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </header>
-            <SideNav sideOpen={sideOpen} setSideOpen={setSideOpen}/>
+            <MobileSideNav sideOpen={sideOpen} setSideOpen={setSideOpen}/>
 
         </>
     )
