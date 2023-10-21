@@ -1,15 +1,13 @@
 "use client"
 
 import MobileMainView from "@/app/layouts/mobile/MobileMainView";
-import MobileTopNav from "@/app/layouts/mobile/header/MobileTopNav";
-import MobileBottomNav from "@/app/layouts/mobile/bottom/MobileBottomNav";
 import {useEffect, useState} from "react";
+import MainView from "@/app/layouts/web/MainView";
 
 export default function Home() {
     const [isMobile, setIsMobile] = useState<boolean>();
 
     useEffect(() => {
-        console.log(isMobile)
         setIsMobile( /Mobi|Android/i.test(navigator.userAgent))
     }, []);
 
@@ -17,16 +15,16 @@ export default function Home() {
         <>
             <script src="https://kit.fontawesome.com/dc0f295e44.js" crossOrigin="anonymous"></script>
             {
-              isMobile?
-                  <>
+              (isMobile!==undefined)?
+                  isMobile?
                       <MobileMainView>
                       </MobileMainView>
-                  </>
-                  :
-                  <div>
-
-                  </div>
-          }
+                      :
+                      <MainView>
+                      </MainView>
+                      :
+                  <></>
+            }
       </>
   )
 }

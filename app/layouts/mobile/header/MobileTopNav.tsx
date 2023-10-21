@@ -11,7 +11,7 @@ export default function MobileTopNav(){
     }, []);
     return(
         <>
-            <header>
+            <header className="m_header_nav">
                 <button className="hamburger_btn" onClick={()=>{setSideOpen(true)}}>
                     <i className="fa-solid fa-bars"></i>
                 </button>

@@ -23,7 +23,7 @@ export default function MobileSideNav(props:sideOpenProps){
 
 
     return (
-        <div className={'side_bar' + (props.sideOpen ? ' open' : ' close')} ref={sideBarRef}>
+        <div className={'m_side_bar' + (props.sideOpen ? ' open' : ' close')} ref={sideBarRef}>
             <div className="side_bar_main">
                 <div className="side_logo">
                     <button className="hamburger_btn" onClick={()=>{props.setSideOpen(false)}}>

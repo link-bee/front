@@ -3,7 +3,7 @@ import Image from "next/image";
 export default function MobileBottomNav(){
     return(
         <>
-            <div className="bottom_nav">
+            <div className="m_bottom_nav">
                 <ul className="bottom_nav_btn_list">
                     <li>
                         <button>

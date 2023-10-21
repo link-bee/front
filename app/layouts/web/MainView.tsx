@@ -1,17 +1,17 @@
 import React from "react";
 import {usePathname} from "next/navigation";
-import MobileTopNav from "@/app/layouts/mobile/header/MobileTopNav";
-import MobileBottomNav from "@/app/layouts/mobile/bottom/MobileBottomNav";
-import MobileSideNav from "@/app/layouts/mobile/side/MobileSideNav";
+import TopNav from "@/app/layouts/web/header/TopNav";
+import SideNav from "@/app/layouts/web/side/SideNav";
+import './web.scss'
 
 export default function MainView({children}: {children:React.ReactNode}){
     const pathname = usePathname();
 
     return(
         <>
-            <MobileTopNav/>
+            <TopNav/>
+            <SideNav/>
             {children}
-            <MobileBottomNav/>
         </>
     )
 }

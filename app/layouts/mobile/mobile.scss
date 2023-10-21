@@ -50,7 +50,7 @@ a{
     text-decoration: none;
 }
 
-header {
+.m_header_nav {
     position: fixed;
     z-index: var(--zIndex-middle);
     top: 0;
@@ -94,7 +94,7 @@ header {
     }
 }
 
-.bottom_nav{
+.m_bottom_nav{
     height: 55px;
     background-color: var(--color-black);
     position: fixed;
@@ -130,7 +130,7 @@ header {
         }
     }
 }
-.video_section {
+.m_video_section {
     height: 100%;
     position: relative;
     overflow-y: scroll;
@@ -173,7 +173,7 @@ header {
         cursor: pointer;
     }
 }
-.side_bar{
+.m_side_bar{
     position: fixed;
     width: 260px;
     height: 100vh;
