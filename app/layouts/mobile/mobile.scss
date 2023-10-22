@@ -233,13 +233,30 @@
 }
 
 .video_detail{
+
     display: flex;
     justify-content: center;
     align-items: center;
+    background: black;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+
+    .sound_con{
+        position: absolute;
+        z-index: var(--zIndex-top);
+        margin-top: 150%;
+        right: var(--m-padding-big);
+
+        i{
+            font-size: calc(var(--m-font-largest) * 1);
+        }
+    }
 }
 
 
 .swiper {
+    overflow: hidden;
     width: 100%;
     height: 100vh;
 }

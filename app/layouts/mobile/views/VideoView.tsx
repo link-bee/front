@@ -9,8 +9,8 @@ import {Mousewheel, Pagination} from 'swiper/modules';
 export default function VideoView() {
     const [ref, inView] = useInView();
     const [page, setPage] = useState<number>(1)
+    const [muted, setMuted] = useState<boolean>(true)
     const [videoList, setVideoList] = useState<VideoInfo[]>([])
-    const [isFirst, setIsFirst] = useState<boolean>(true);
 
     //스크롤 감지
     useEffect(() => {
@@ -21,16 +21,17 @@ export default function VideoView() {
         }
     }, [inView]);
 
-    //초기 로딩
     useEffect(() => {
-        productFetch();
+        productFetch()
     }, []);
-    
+
     const productFetch = () => {
-        fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
+        // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
+        fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
-            .then((json:VideoInfo[]) => {
-                setVideoList([...videoList, ...json])
+            .then((json) => {
+                let list = json?.categories[0].videos
+                setVideoList([...videoList, ...list])
                 // 요청 성공 시에 페이지에 1 카운트 해주기
                 // if(page===1){
                 //     setIsFirst(false);
@@ -55,15 +56,13 @@ export default function VideoView() {
                 videoList?.map((video:VideoInfo,index) =>
                     videoList.length -1 === index?
                         <SwiperSlide key={index}>
-                            <div className="video_detail"  >
-                                <VideoDetail video={video} key={video.id}/>
-                            </div>
+                            <template ref={ref}>
+                                <VideoDetail muted={muted} setMuted={setMuted} video={video} key={index}/>
+                            </template>
                         </SwiperSlide>
                         :
                         <SwiperSlide key={index}>
-                            <div className="video_detail" key={index}>
-                                <VideoDetail video={video} key={video.id}/>
-                            </div>
+                            <VideoDetail muted={muted} setMuted={setMuted} video={video} key={index}/>
                         </SwiperSlide>
                 )
             }

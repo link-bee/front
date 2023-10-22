@@ -1,6 +1,7 @@
 interface VideoInfo {
-    avatar: string,
-    createdAt:string,
-    id:string,
-    name:string,
+    description:string,
+    sources:string[],
+    subtitle:string,
+    thumb:string,
+    title:string,
 };
