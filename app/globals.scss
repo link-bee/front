@@ -48,7 +48,9 @@
   z-index: var(--m-zIndex-middle);
 }
 body{
-  height: 100vh;
+  height : auto;
+  min-height: 100vh;
+  //height: 100vh;
 }
 
 ul{

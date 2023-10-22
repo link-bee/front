@@ -44,12 +44,10 @@ export default function VideoView() {
     return (
         <Swiper
             direction={'vertical'}
-            slidesPerView={1}
             spaceBetween={30}
             mousewheel={true}
-            pagination={{
-                clickable: true,
-            }}
+            observer ={true}	// 추가
+            observeParents = {true}	// 추가
             modules={[Mousewheel, Pagination]}
         >
             {
