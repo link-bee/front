@@ -3,6 +3,7 @@
 import MobileMainView from "@/app/layouts/mobile/MobileMainView";
 import {useEffect, useState} from "react";
 import MainView from "@/app/layouts/web/MainView";
+import './globals.scss'
 
 export default function Home() {
     const [isMobile, setIsMobile] = useState<boolean>();

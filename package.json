@@ -21,7 +21,9 @@
     "react-advanced-cropper": "^0.19.3",
     "react-dom": "^18",
     "react-icons": "^4.11.0",
+    "react-intersection-observer": "^9.5.2",
     "sass": "^1.69.4",
+    "swiper": "^10.3.1",
     "zustand": "^4.4.3"
   },
   "devDependencies": {

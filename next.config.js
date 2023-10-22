@@ -6,7 +6,17 @@ const nextConfig = {
 
         if (!isServer) config.externals.push('canvas');
         return config;
-    }
+
+    },
+    images: {
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'cloudflare-ipfs.com',
+                port: '',
+            },
+        ],
+    },
 }
 
 module.exports = nextConfig

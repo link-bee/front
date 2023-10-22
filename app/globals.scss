@@ -1,0 +1,67 @@
+:root {
+  --color-black: #000000;
+  --color-light-black:#41413F;
+  --color-pink: #ff375b;
+  --color-light-pink:#ff7b90;
+  --color-gray:#A2A2A2;
+  --color-light-gray:#F1F1F2;
+  --color-beige:#F1EFE9;
+  --color-light-beige:#E8E5E3;
+  --color-white: rgba(255, 255, 255);
+  --m-font-largest:24px;
+  --m-font-large:18px;
+  --m-font-defualt:16px;
+  --m-font-medium:14px;
+  --m-font-small:12px;
+  --m-font-micro:10px;
+  --m-padding-big:16px;
+  --m-padding-default:12px;
+  --m-padding-small:8px;
+  --m-padding-micro:4px;
+  --m-zIndex-top:100;
+  --m-zIndex-topNav:90;
+  --m-zIndex-sideNav:80;
+  --m-zIndex-middle:50;
+  --m-zIndex-bottomNav:0;
+  --font-largest:30px;
+  --font-large:18px;
+  --font-defualt:16px;
+  --font-medium:14px;
+  --font-small:12px;
+  --font-micro:10px;
+  --padding-large:20px;
+  --padding-default:18px;
+  --padding-small:14px;
+  --padding-micro:10px;
+  --zIndex-top:100;
+  --zIndex-topNav:90;
+  --zIndex-sideNav:80;
+  --zIndex-middle:50;
+  --zIndex-bottomNav:0;
+}
+
+*{
+  font-family: 'Arial';
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  z-index: var(--m-zIndex-middle);
+}
+body{
+  height: 100vh;
+}
+
+ul{
+  list-style: none;
+}
+
+button{
+  border: none;
+  background-color: transparent;
+  font-size: var(--m-font-medium);
+  cursor: pointer;
+}
+
+a{
+  text-decoration: none;
+}
