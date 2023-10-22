@@ -10,7 +10,11 @@ export default function Home() {
 
     useEffect(() => {
         setIsMobile( /Mobi|Android/i.test(navigator.userAgent))
+        let vh = window.innerHeight * 0.01;
+
+        document.documentElement.style.setProperty('--vh', `${vh}px`);
     }, []);
+
 
     return (
         <>

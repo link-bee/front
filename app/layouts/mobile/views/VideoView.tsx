@@ -44,11 +44,10 @@ export default function VideoView() {
     return (
         <Swiper
             direction={'vertical'}
-            spaceBetween={30}
+            spaceBetween={50}
             mousewheel={true}
             observer ={true}	// 추가
             observeParents = {true}	// 추가
-            modules={[Mousewheel, Pagination]}
         >
             {
                 videoList?.map((video:VideoInfo,index) =>

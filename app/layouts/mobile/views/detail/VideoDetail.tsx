@@ -48,6 +48,7 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
     return(
         <div className="video_detail"
              ref={videoSectionRef}>
+            <div className="video_section">
                 <video
                     ref={videoRef}
                     width={"100%"}
@@ -57,10 +58,11 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
                 >
                     <source src={props.video.sources[0]} type="video/webm" />
                 </video>
-                {
-                    play?
+            </div>
+            {
+                play?
                     <></>
-                        :
+                    :
                     <button ref={playBtnRef}
                             className="play_btn"
                             onClick={()=>{
@@ -70,16 +72,16 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
                     >
                         <i className="fa-solid fa-play" style={{color: "#ffffff"}}></i>
                     </button>
-                }
+            }
 
-                <button ref={soundBtnRef}  className="sound_con" onClick={()=>{props.setMuted(!props.muted)}}>
-                    {
-                        props.muted?
+            <button ref={soundBtnRef}  className="sound_con" onClick={()=>{props.setMuted(!props.muted)}}>
+                {
+                    props.muted?
                         <i className="fa-solid fa-volume-xmark" style={{color: 'lightgray'}}></i>
-                            :
+                        :
                         <i className="fa-solid fa-volume-high" style={{color: 'lightgray'}}></i>
-                    }
-                </button>
+                }
+            </button>
         </div>
     )
 }

@@ -177,31 +177,26 @@
 
 .video_view{
     width: 100%;
-    height: 100%;
+    height: calc(var(--vh, 1vh) * 100);
 
     div{
         display: flex;
-        height: 100vh;
+        height: calc(var(--vh, 1vh) * 100);
 
         image{
-            height: 100vh;
+            height: calc(var(--vh, 1vh) * 100);
         }
     }
 }
 
 .video_detail{
-
-    touch-action: pan-y;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: black;
+    position: relative;
     width: 100%;
-    overflow: hidden;
+    height: 100%;
 
     .sound_con{
         position: absolute;
-        z-index: var(--zIndex-top);
+        z-index: 999;
         margin-top: 150%;
         right: var(--m-padding-big);
 
@@ -210,6 +205,8 @@
         }
     }
     .play_btn{
+        top: calc(50% - 25px);
+        left: calc(50% - calc(var(--m-padding-big)/2));
         position: absolute;
         z-index: var(--zIndex-top);
 
@@ -217,6 +214,13 @@
             font-size: calc(var(--m-font-largest) * 2);
             text-shadow: 1px 1px 1px black;
         }
+    }
+    .video_section{
+        display: flex;
+        position: absolute;
+        inset: 0px;
+        z-index: var(--zIndex-middle);
+        pointer-events: none;
     }
 }
 .a{
@@ -226,14 +230,16 @@
 
 
 .swiper {
-    touch-action: pan-y;
     overflow: hidden;
     width: 100%;
-    height: 100vh;
+    height: calc(100% - 50px);
+    background-color: black;
+}
+.swiper-wrapper{
+    height: 100% !important;
 }
 
 .swiper-slide {
-    touch-action: pan-y;
     text-align: center;
     font-size: 18px;
     background-color: black;
