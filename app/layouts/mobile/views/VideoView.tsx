@@ -3,7 +3,6 @@ import React, {useEffect, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import VideoDetail from "@/app/layouts/mobile/views/detail/VideoDetail";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {Mousewheel, Pagination} from 'swiper/modules';
 
 
 export default function VideoView() {
