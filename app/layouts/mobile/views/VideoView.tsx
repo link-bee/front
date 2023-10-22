@@ -52,9 +52,8 @@ export default function VideoView() {
                 videoList?.map((video:VideoInfo,index) =>
                     videoList.length -1 === index?
                         <SwiperSlide key={index}>
-                            <template ref={ref}>
-                                <VideoDetail muted={muted} setMuted={setMuted} video={video} key={index}/>
-                            </template>
+                            <VideoDetail muted={muted} setMuted={setMuted} video={video} key={index}/>
+                            <div className="checkLast" ref={ref}></div>
                         </SwiperSlide>
                         :
                         <SwiperSlide key={index}>

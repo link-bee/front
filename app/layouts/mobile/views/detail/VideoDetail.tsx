@@ -12,7 +12,6 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
 
     useEffect(() => {
         if(inVideoView){
-            console.log('??')
             var videoList:any = document.getElementsByClassName("video-player")
 
             Array.from(videoList).map((video:any)=>{
@@ -74,14 +73,34 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
                     </button>
             }
 
-            <button ref={soundBtnRef}  className="sound_con" onClick={()=>{props.setMuted(!props.muted)}}>
-                {
-                    props.muted?
-                        <i className="fa-solid fa-volume-xmark" style={{color: 'lightgray'}}></i>
-                        :
-                        <i className="fa-solid fa-volume-high" style={{color: 'lightgray'}}></i>
-                }
-            </button>
+            <div className="video_btn_list">
+                <button className="user_avatar">
+                    <i className="fa-solid fa-face-smile"></i>
+                    <span>
+                        <i className="fa-solid fa-circle-plus"></i>
+                    </span>
+                </button>
+                <button>
+                    <i className="fa-solid fa-heart"></i>
+                    <span>14.2k</span>
+                </button>
+                <button>
+                    <i className="fa-regular fa-comment-dots"></i>
+                    <span>78</span>
+                </button>
+                <button>
+                    <i className="fa-solid fa-share"></i>
+                    <span>27</span>
+                </button>
+                <button ref={soundBtnRef}  onClick={()=>{props.setMuted(!props.muted)}}>
+                    {
+                        props.muted?
+                            <i className="fa-solid fa-volume-xmark" ></i>
+                            :
+                            <i className="fa-solid fa-volume-high" ></i>
+                    }
+                </button>
+            </div>
         </div>
     )
 }
