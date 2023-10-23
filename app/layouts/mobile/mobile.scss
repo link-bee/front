@@ -197,6 +197,29 @@
     width: 100%;
     height: 100%;
 
+    .clickable_area{
+        top: 50px;
+        position: absolute;
+        height: calc(100% - 85px);
+        width: 100%;
+    }
+    .sound_con{
+        position: absolute;
+        top: 70px;
+        left: 20px;
+        z-index: 100;
+        color: var(--color-black);
+        width: 150px;
+        height: 40px;
+        font-size: var(--m-font-defualt);
+        font-weight: bold;
+        background-color: rgba(255, 255, 255, 0.8);
+        border-radius: 5px;
+
+        span{
+            padding-left: 3px;
+        }
+    }
     .video_btn_list{
         position: absolute;
         margin-top: 120%;

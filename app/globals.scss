@@ -4,7 +4,7 @@
   --color-pink: #ff375b;
   --color-light-pink:#ff7b90;
   --color-gray:#A2A2A2;
-  --color-light-gray:#F1F1F2;
+  --color-light-gray: rgba(241, 241, 242, 0.5);
   --color-beige:#F1EFE9;
   --color-light-beige:#E8E5E3;
   --color-white: rgba(255, 255, 255);
@@ -54,6 +54,22 @@ body{
 
 ul{
   list-style: none;
+}
+button{
+  outline: none;
+}
+button:active{
+  outline:none;
+}
+
+textarea:focus {
+  outline: none;
+}
+button:focus {
+  outline: none;
+}
+input:focus {
+  outline: none;
 }
 
 button{

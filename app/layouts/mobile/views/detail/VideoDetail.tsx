@@ -5,6 +5,8 @@ import {useInView} from "react-intersection-observer";
 
 export default function VideoDetail(props : {video:VideoInfo, muted:boolean, setMuted:Function}) {
     const [videoSectionRef, inVideoView] = useInView();
+    const videoBtnListRef = useRef<HTMLDivElement>(null);
+    const clickableArea = useRef<HTMLDivElement>(null);
     const playBtnRef = useRef<HTMLButtonElement>(null);
     const soundBtnRef = useRef<HTMLButtonElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null)
@@ -25,12 +27,15 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
 
     const onClickOutside = (event: Event) => {
         if(inVideoView) {
-            if (!playBtnRef.current?.contains(event.target as Node) && !soundBtnRef.current?.contains(event.target as Node)) {
-                if (play) {
-                    videoRef.current?.pause();
-                } else {
-                    videoRef.current?.play();
-                }
+            if (clickableArea.current?.contains(event.target as Node)
+                && !playBtnRef.current?.contains(event.target as Node)
+                && !soundBtnRef.current?.contains(event.target as Node)
+                && !videoBtnListRef.current?.contains(event.target as Node)) {
+                    if (play) {
+                        videoRef.current?.pause();
+                    } else {
+                        videoRef.current?.play();
+                    }
                 setPlay(!play)
             }
         }
@@ -47,6 +52,9 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
     return(
         <div className="video_detail"
              ref={videoSectionRef}>
+            <div className="clickable_area"
+                ref={clickableArea}>
+            </div>
             <div className="video_section">
                 <video
                     ref={videoRef}
@@ -73,7 +81,7 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
                     </button>
             }
 
-            <div className="video_btn_list">
+            <div className="video_btn_list" ref={videoBtnListRef}>
                 <button className="user_avatar">
                     <i className="fa-solid fa-face-smile"></i>
                     <span>
@@ -92,15 +100,15 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
                     <i className="fa-solid fa-share"></i>
                     <span>27</span>
                 </button>
-                <button ref={soundBtnRef}  onClick={()=>{props.setMuted(!props.muted)}}>
-                    {
-                        props.muted?
-                            <i className="fa-solid fa-volume-xmark" ></i>
-                            :
-                            <i className="fa-solid fa-volume-high" ></i>
-                    }
-                </button>
             </div>
+            {
+                props.muted?
+                <button className="sound_con" ref={soundBtnRef}  onClick={()=>{props.setMuted(!props.muted)}}>
+                    <i className="fa-solid fa-volume-xmark" ></i> <span>음소거 해제</span>
+                </button>
+                    :
+                    <></>
+            }
         </div>
     )
 }
