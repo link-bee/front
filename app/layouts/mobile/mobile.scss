@@ -210,7 +210,7 @@
         position: absolute;
         top: 70px;
         left: 20px;
-        z-index: 100;
+        z-index: var(--m-zIndex-videoBtn);
         color: var(--color-black);
         width: 150px;
         height: 40px;
@@ -372,9 +372,52 @@
             display: flex;
             height: 500px;
             overflow-y: scroll;
+            padding: var(--m-padding-default);
 
             .comment_list{
                 height: 600PX;
+                width: 100%;
+
+                .comment_detail{
+                    display: flex;
+                    width: 100%;
+                    padding-bottom: var(--m-padding-big);
+
+                    .comment_info{
+                        width: 100%;
+                        display: flex;
+                        flex-direction: column;
+                        align-items: start;
+                        padding: 0 var(--m-padding-default);
+
+                        .comment_user{
+                            font-size: var(--m-font-defualt);
+                            font-weight: bold;
+                        }
+                        .comment_contents{
+                            text-align: start;
+                            font-size: var(--m-font-defualt);
+                            padding-bottom: var(--m-padding-default);
+                        }
+
+                        .comment_btn_list{
+                            font-size: var(--m-font-small);
+                            display: flex;
+                            width: 100%;
+                            justify-content: space-between;
+
+                            .comment_reply_btn{
+                                position: sticky;
+                                cursor: pointer;
+                                right: 100%;
+                                margin-left: 40px;
+
+
+                            }
+
+                        }
+                    }
+                }
             }
         }
         .comment_input{

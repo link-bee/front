@@ -150,7 +150,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     ㄹㄴ이마ㅓㄹ먀이너히ㅑㅇ러ㅠㅣㅑㅇㄹ너ㅠㅣ얄너ㅠ이랴ㅓㅠ이랴ㅓㅠㅇㄹ니ㅑㅓㅠㅇㄹ니ㅑㅓㅠㅇㄹ니ㅑㅓㅠㄹ이ㅑ뉴
                 </div>
             </div>
-            <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef}/>
+            <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={props.video.comments}/>
         </div>
     )
 }
