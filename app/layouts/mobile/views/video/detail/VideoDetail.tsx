@@ -3,8 +3,9 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import VideoComment from "@/app/layouts/mobile/views/video/detail/comment/VideoComment";
+import {SwiperModule} from "swiper/types";
 
-export default function VideoDetail(props : {video:VideoInfo, muted:boolean, setMuted:Function}) {
+export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:boolean, setMuted:Function}) {
     const [videoSectionRef, inVideoView] = useInView();
     const videoBtnListRef = useRef<HTMLDivElement>(null);
     const clickableArea = useRef<HTMLDivElement>(null);
@@ -16,6 +17,14 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
 
     const [play, setPlay] = useState<boolean>(true)
     const [openComment,setOpenComment] = useState<boolean>(false)
+
+    useEffect(() => {
+        if(openComment){
+            props.swiper.allowTouchMove = false
+        }else{
+            props.swiper.allowTouchMove = true
+        }
+    }, [openComment]);
 
     useEffect(() => {
         if(inVideoView){
@@ -38,9 +47,7 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
 
     const onClickOutside = (event: Event) => {
         if(openComment){
-            if(!videoCommentRef.current?.contains(event.target as Node)){
-                setOpenComment(false);
-            }
+
             return;
         }
         if(inVideoView) {
@@ -143,7 +150,7 @@ export default function VideoDetail(props : {video:VideoInfo, muted:boolean, set
                     ㄹㄴ이마ㅓㄹ먀이너히ㅑㅇ러ㅠㅣㅑㅇㄹ너ㅠㅣ얄너ㅠ이랴ㅓㅠ이랴ㅓㅠㅇㄹ니ㅑㅓㅠㅇㄹ니ㅑㅓㅠㅇㄹ니ㅑㅓㅠㄹ이ㅑ뉴
                 </div>
             </div>
-            <VideoComment openComment={openComment} setRef={videoCommentRef}/>
+            <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef}/>
         </div>
     )
 }
