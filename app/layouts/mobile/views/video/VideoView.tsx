@@ -1,7 +1,7 @@
 'use client'
 import React, {useEffect, useState} from "react";
 import {useInView} from "react-intersection-observer";
-import VideoDetail from "@/app/layouts/mobile/views/detail/VideoDetail";
+import VideoDetail from "@/app/layouts/mobile/views/video/detail/VideoDetail";
 import {Swiper, SwiperSlide} from "swiper/react";
 
 

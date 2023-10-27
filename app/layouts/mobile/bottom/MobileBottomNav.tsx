@@ -5,12 +5,12 @@ export default function MobileBottomNav(){
         <>
             <div className="m_bottom_nav">
                 <ul className="bottom_nav_btn_list">
-                    <li>
-                        <button>
-                            <i className="fa-solid fa-house"></i>
-                            홈
-                        </button>
-                    </li>
+                    {/*<li>*/}
+                    {/*    <button>*/}
+                    {/*        <i className="fa-solid fa-house"></i>*/}
+                    {/*        홈*/}
+                    {/*    </button>*/}
+                    {/*</li>*/}
                     <li>
                         <button>
                             <i className="fa-solid fa-magnifying-glass"></i>
@@ -18,14 +18,18 @@ export default function MobileBottomNav(){
                         </button>
                     </li>
                     <li>
-                        <Image src="/favicon.png" alt="Main Logo" width="40" height="40"/>
-                    </li>
-                    <li>
                         <button>
-                            <i className="fa-regular fa-message"></i>
-                            알림
+                            <i className="fa-solid fa-house"></i>
+                            {/*<Image src="/favicon.png" alt="Main Logo" width="30" height="30"/>*/}
+                            홈
                         </button>
                     </li>
+                    {/*<li>*/}
+                    {/*    <button>*/}
+                    {/*        <i className="fa-regular fa-message"></i>*/}
+                    {/*        알림*/}
+                    {/*    </button>*/}
+                    {/*</li>*/}
                     <li>
                         <button>
                             <i className="fa-regular fa-user"></i>

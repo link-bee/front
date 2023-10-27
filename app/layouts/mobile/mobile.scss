@@ -1,6 +1,6 @@
 .m_header_nav {
     position: fixed;
-    z-index: var(--m-zIndex-middle);
+    z-index: var(--m-zIndex-topNav);
     top: 0;
     left: 0;
     right: 0;
@@ -55,6 +55,9 @@
         justify-content: space-around;
         margin: var(--m-padding-micro) 0;
 
+        li{
+            width:45px;
+        }
         button{
             display: flex;
             flex-direction: column;
@@ -83,7 +86,7 @@
     position: fixed;
     width: 260px;
     height: 100vh;
-    z-index: var(--m-zIndex-middle);
+    z-index: var(--m-zIndex-top);
     background-color: var(--color-white);
 
     &.open {
@@ -220,11 +223,49 @@
             padding-left: 3px;
         }
     }
+    .video_caption{
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 80%;
+        align-items: start;
+        left: 5%;
+        color: white;
+        div{
+            padding-bottom: 5px;
+        }
+        .video_hashTag{
+            display: flex;
+            padding-bottom: 10px;
+            button{
+                color: white;
+                font-size: var(--m-font-micro);
+                padding-right: 2px;
+            }
+        }
+
+        .video_uploader{
+            font-size: var(--m-font-small);
+        }
+        .video_name{
+            font-size: var(--m-font-large);
+
+        }
+        .video_description{
+            font-size: var(--m-font-small);
+            width: 250px;
+            height: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+        }
+    }
     .video_btn_list{
         position: absolute;
-        margin-top: 120%;
+        top: 55%;
         right: 0;
-        z-index: var(--zIndex-top);
+        z-index: var(--m-zIndex-videoBtn);
         display: flex;
         flex-direction: column;
         width: 50px;
@@ -237,7 +278,7 @@
             width: 40px;
             height: 40px;
             background-color: transparent;
-            z-index: var(--zIndex-top);
+            z-index: var(--m-zIndex-videoBtn);
             margin-bottom: 25px;
 
             i {
@@ -281,7 +322,7 @@
         top: calc(50% - 25px);
         left: calc(50% - calc(var(--m-padding-big)/2));
         position: absolute;
-        z-index: var(--zIndex-top);
+        z-index: var(--m-zIndex-videoBtn);
 
         i{
             font-size: calc(var(--m-font-largest) * 2);
@@ -295,6 +336,25 @@
         z-index: var(--zIndex-middle);
         pointer-events: none;
     }
+
+    .video_comment{
+        width: 100%;
+        top: calc(100% + 50px);
+        z-index: 0;
+        height: 400px;
+        position: relative;
+        background-color: white;
+
+        &.open {
+            z-index: var(--m-zIndex-videoComment);
+            transition: 0.5s ease;
+            top: calc(100% - 350px);
+        }
+        &.close{
+            height: 0px;
+            transition: 0.5s ease;
+        }
+    }
 }
 .a{
     width: 100%;
@@ -303,7 +363,9 @@
 
 
 .swiper {
-    overflow: hidden;
+    position: absolute;
+    z-index: var(--m-zIndex-video);
+    //overflow: hidden;
     width: 100%;
     height: calc(100% - 50px);
     background-color: black;
