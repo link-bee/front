@@ -99,7 +99,7 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
             {
                 paginatedDetail?
                 (paginatedDetail?.length-1 > loadPage)?
-                    <button onClick={()=>showMore()}>코멘트 불러오기</button>
+                    <button onClick={()=>showMore()} style={{padding:'10px'}}>코멘트 불러오기 <i className="fa-solid fa-angle-down"></i></button>
                         :
                     null
                 :
