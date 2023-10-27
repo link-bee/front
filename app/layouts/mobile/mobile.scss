@@ -370,6 +370,7 @@
         }
         .comment_list_wrap{
             display: flex;
+            flex-direction: column;
             height: 500px;
             overflow-y: scroll;
             padding: var(--m-padding-default);
