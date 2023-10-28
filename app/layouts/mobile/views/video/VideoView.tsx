@@ -29,11 +29,11 @@ export default function VideoView() {
 
     const productFetch = () => {
         // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
-        fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
+        // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
+            fetch('/video.json')
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
-                let list = json?.categories[0].videos
-                setVideoList([...videoList, ...list])
+                setVideoList([...videoList, ...json])
                 // 요청 성공 시에 페이지에 1 카운트 해주기
                 // if(page===1){
                 //     setIsFirst(false);

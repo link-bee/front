@@ -87,7 +87,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     muted={props.muted}
                     className="video-player w-2/3 h-full aspect-square object-cover rounded-xl "
                 >
-                    <source src={props.video.sources[0]} type="video/webm" />
+                    <source src={props.video.url} type="video/webm" />
                 </video>
             </div>
             {
@@ -113,16 +113,15 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     </span>
                 </button>
                 <button>
-                    <i className="fa-solid fa-heart"></i>
-                    <span>14.2k</span>
+                    <i className="fa-solid fa-heart" style={{color:props.video.isLikes?"red":''}}></i>
+                    <span>{props.video.likes}</span>
                 </button>
                 <button onClick={()=>setOpenComment(true)}>
                     <i className="fa-regular fa-comment-dots"></i>
-                    <span>78</span>
+                    <span>{props.video.comments.length}</span>
                 </button>
                 <button>
                     <i className="fa-solid fa-share"></i>
-                    <span>27</span>
                 </button>
             </div>
             {
@@ -136,18 +135,23 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
 
             <div className="video_caption" ref={videoCaption}>
                 <div className="video_hashTag">
-                    <button>#카테고리1</button>
-                    <button>#카테고리2</button>
-                    <button>#카테고리3</button>
+                    {
+                        props.video?.hashtags?.map((hashtag, idx)=>{
+                            if(idx<4)
+                            return(
+                                <button style={{paddingRight:'5px'}} key={idx}>{hashtag}</button>
+                            )
+                        })
+                    }
                 </div>
                 <div className="video_uploader">
-                    햄건(업로더)
+                    {props.video.userName}
                 </div>
                 <div className="video_name">
-                    샘플비디오(영상제목)
+                    {props.video.title}
                 </div>
                 <div className="video_description">
-                    ㄹㄴ이마ㅓㄹ먀이너히ㅑㅇ러ㅠㅣㅑㅇㄹ너ㅠㅣ얄너ㅠ이랴ㅓㅠ이랴ㅓㅠㅇㄹ니ㅑㅓㅠㅇㄹ니ㅑㅓㅠㅇㄹ니ㅑㅓㅠㄹ이ㅑ뉴
+                    {props.video.description}
                 </div>
             </div>
             <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={props.video.comments}/>

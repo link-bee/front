@@ -8,11 +8,16 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
 
     useEffect(() => {
         var paging = [];
-        if(props.comments !== null && props.comments?.length>10){
+        if(props.comments == null)
+            return;
+
+        if(props.comments?.length>10){
             var newArr = division([...props.comments],10)
 
-            setPaginatedDetail(newArr)
             setShowPage(newArr[loadPage])
+            setPaginatedDetail(newArr)
+        }else{
+            setShowPage([...props.comments])
         }
     }, [props.comments]);
 
@@ -50,7 +55,7 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
 
                                 <div className="comment_info">
                                     <span className="comment_user">
-                                        {comment?.user}
+                                        {comment?.userName}
                                     </span>
                                     <span className="comment_contents">
                                         {comment?.contents}
@@ -58,7 +63,7 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
 
                                     <div className="comment_btn_list">
                                         <span style={{paddingRight:'10px', width:'40px'}}>
-                                            {comment?.date}
+                                            {/*{comment?.date}*/}
                                         </span>
                                         {/*<button className="comment_reply_btn">*/}
                                         {/*    Reply*/}
