@@ -3,8 +3,8 @@
   position: relative;
   width: 100%;
   background-color: black;
-  top: 350px;
-  height: calc(100% - 405px);
+  top: 300px;
+  height: calc(100% - 350px);
   display: grid;
   grid-template-columns: repeat(3, 1fr);
 }
@@ -15,6 +15,10 @@
     height: 30vh;
 
     img{
+      width: 100%;
+      height: 30vh;
+    }
+    video{
       width: 100%;
       height: 30vh;
     }

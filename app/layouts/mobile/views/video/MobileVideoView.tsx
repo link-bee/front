@@ -4,7 +4,7 @@ import {useInView} from "react-intersection-observer";
 import VideoDetail from "@/app/layouts/mobile/views/video/detail/VideoDetail";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {motion} from "framer-motion"
-export default function VideoView() {
+export default function MobileVideoView() {
     const [ref, inView] = useInView();
     const [page, setPage] = useState<number>(1)
     const [muted, setMuted] = useState<boolean>(true)

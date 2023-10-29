@@ -1,4 +1,5 @@
 'use client'
+import styles from "./MobileTopNav.module.scss"
 import React, {useEffect, useState} from "react";
 import MobileSideNav from "@/app/layouts/mobile/side/MobileSideNav";
 
@@ -11,24 +12,26 @@ export default function MobileTopNav(){
     }, []);
     return(
         <>
-            <header className="m_header_nav">
-                <button className="hamburger_btn" onClick={()=>{setSideOpen(true)}}>
+            <header className={styles.m_header_nav}>
+                <button className={styles.hamburger_btn} onClick={()=>{setSideOpen(true)}}>
                     <i className="fa-solid fa-bars"></i>
                 </button>
-                <ul className="function_list">
+                <ul className={styles.function_list}>
                     <li>
                         <button  onClick={()=> {setCurState('follow')}}
-                             className={"follow_btn" + (curState === 'follow' ? ' active' : '')}>팔로잉
+                             className={`${styles.link_btn} ${curState === 'follow' ? styles.active: ''}`}
+                        >링크
                         </button>
                     </li>
                     <li>
                         <button onClick={()=> {setCurState('recommend')}}
-                            className={"recommend_btn" + (curState === 'recommend' ? ' active' : '')}>추천
+                                className={`${styles.recommend_btn} ${curState === 'recommend' ? styles.active: ''}`}
+                        >추천
                         </button>
                     </li>
                 </ul>
 
-                <button className="search_btn">
+                <button>
                     <i className="fa-solid fa-magnifying-glass"></i>
                 </button>
             </header>

@@ -3,10 +3,11 @@ import Image from "next/image";
 import React, {useEffect, useState} from "react";
 import {motion} from "framer-motion"
 import ProfileVideoList from "@/app/layouts/mobile/profile/list/ProfileVideoList";
+import useViewStore from "@/app/store/view";
 
 export default function MobileMyProfile(){
     const [curList, setCurList] =useState<string>('video')
-
+    const {setView} = useViewStore()
 
     //테스트용
     const [videoList, setVideoList] = useState<VideoInfo[]>([])
@@ -58,10 +59,19 @@ export default function MobileMyProfile(){
             initial={{ opacity:0 }}
             animate={{ opacity:1 }}>
             <div className={styles.m_myProfile}>
+                <div className={styles.myProfile_top}>
+                    <div onClick={()=>{setView('home')}}>
+                        <i className="fa-solid fa-arrow-left"></i>
+                    </div>
+                    <div>
+                        <span>프로필</span>
+                    </div>
+                    <div></div>
+                </div>
                 <div className={styles.m_myProfile_detail}>
 
                     <div className={styles.m_myProfile_avatar}>
-                        <Image src="/images/man.jpg" alt="man" width={90} height={90} style={{borderRadius:'50%'}}/>
+                        <Image src="/images/man.jpg" alt="man" width={80} height={80} style={{borderRadius:'50%'}}/>
                         <span style={{fontWeight:"bold"}}>@gun7728</span>
                     </div>
 

@@ -4,9 +4,9 @@ type View = {
     curView : string,
     setView : Function,
 }
-const usePageStore = create<View>((set)=>({
+const useViewStore = create<View>((set)=>({
     curView: 'home' ,
     setView : (page:string)=> set({curView: page}),
 }))
 
-export default usePageStore
+export default useViewStore

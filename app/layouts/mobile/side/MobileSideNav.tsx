@@ -1,4 +1,5 @@
 import React, {useEffect, useRef, useState} from "react";
+import styles from "./MobileSideNav.module.scss"
 
 type sideOpenProps = {
     sideOpen: Boolean;
@@ -23,43 +24,43 @@ export default function MobileSideNav(props:sideOpenProps){
 
 
     return (
-        <div className={'m_side_bar' + (props.sideOpen ? ' open' : ' close')} ref={sideBarRef}>
-            <div className="side_bar_main">
-                <div className="side_logo">
-                    <button className="hamburger_btn" onClick={()=>{props.setSideOpen(false)}}>
+        <div className={`${styles.m_side_bar} ${props.sideOpen ? styles.open : styles.close}`} ref={sideBarRef}>
+            <div className={styles.side_bar_main}>
+                <div className={styles.side_logo}>
+                    <button className={styles.hamburger_btn} onClick={()=>{props.setSideOpen(false)}}>
                         <i className="fa-solid fa-bars"></i>
                     </button>
                     Link
                 </div>
 
-                <div className="function_list">
+                <div className={styles.function_list}>
                     <ul>
                         <li>
-                            <button className="follow_btn active">
+                            <button className={styles.home_btn}>
                                 <i className="fa-solid fa-house" ></i>
-                                추천
+                                홈
                             </button>
                         </li>
                         <li>
-                            <button className="recommend_btn">
-                                <i className="fa-solid fa-user-group" style={{color: "#000000"}}></i>
-                                팔로잉
+                            <button className={styles.link_btn}>
+                                <i className="fa-solid fa-link"></i>
+                                링크
                             </button>
                         </li>
 
                     </ul>
                 </div>
 
-                <button className="login_btn">
+                <button className={styles.login_btn}>
                     로그인
                 </button>
             </div>
 
-            <div className="side_bar_info">
-                <span className="info_title">
+            <div className={styles.side_bar_info}>
+                <span className={styles.info_title}>
                     회사
                 </span>
-                <ul className="info_list">
+                <ul>
                     <li><button>정보</button></li>
                     <li><button>뉴스룸</button></li>
                     <li><button>연락처</button></li>

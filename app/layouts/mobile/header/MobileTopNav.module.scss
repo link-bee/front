@@ -1,0 +1,44 @@
+.m_header_nav {
+  position: fixed;
+  z-index: var(--m-zIndex-topNav);
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  box-sizing: content-box;
+  padding: var(--m-padding-small) 10px 30px 10px;
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0));
+
+  button{
+    font-size: var(--m-font-largest);
+    color:var(--color-white);
+  }
+
+  .hamburger_btn{
+
+  }
+
+  .function_list{
+    display: flex;
+
+    li{
+      display: flex;
+      margin: 0 var(--m-padding-micro) ;
+    }
+
+    .link_btn,
+    .recommend_btn{
+      display: flex;
+      color: rgba(255,255,255,0.5);
+      font-size: var(--m-font-large);
+    }
+
+    .active{
+      color: var(--color-white);
+      text-decoration-line:underline;
+      text-underline-offset : 10px;
+    }
+  }
+}
