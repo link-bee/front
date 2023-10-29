@@ -16,6 +16,7 @@ const nextConfig = {
                 port: '',
             },
         ],
+        domains: ['commondatastorage.googleapis.com'],
     },
     reactStrictMode: false,
 }

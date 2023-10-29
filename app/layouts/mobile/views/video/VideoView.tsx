@@ -3,16 +3,13 @@ import React, {FunctionComponent, useEffect, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import VideoDetail from "@/app/layouts/mobile/views/video/detail/VideoDetail";
 import {Swiper, SwiperSlide} from "swiper/react";
-import {SwiperModule} from "swiper/types";
-
-
+import {motion} from "framer-motion"
 export default function VideoView() {
     const [ref, inView] = useInView();
     const [page, setPage] = useState<number>(1)
     const [muted, setMuted] = useState<boolean>(true)
     const [videoList, setVideoList] = useState<VideoInfo[]>([])
     const [swiper, setSwiper] = useState<any>();
-
 
     //스크롤 감지
     useEffect(() => {
@@ -44,29 +41,35 @@ export default function VideoView() {
     };
 
     return (
-        <Swiper
-            onSwiper={(s) => {
-                setSwiper(s);
-            }}
-            direction={'vertical'}
-            spaceBetween={50}
-            mousewheel={true}
-            observer ={true}	// 추가
-            observeParents = {true}	// 추가
-        >
-            {
-                videoList?.map((video:VideoInfo,index) =>
-                    videoList.length -1 === index?
-                        <SwiperSlide key={index}>
-                            <VideoDetail swiper={swiper}  muted={muted} setMuted={setMuted} video={video} key={index}/>
-                            <div className="checkLast" ref={ref}></div>
-                        </SwiperSlide>
-                        :
-                        <SwiperSlide key={index}>
-                            <VideoDetail swiper={swiper} muted={muted} setMuted={setMuted} video={video} key={index}/>
-                        </SwiperSlide>
-                )
-            }
-        </Swiper>
+        <motion.div
+            exit={{ opacity:0 }}
+            initial={{ opacity:0 }}
+            animate={{ opacity:1 }}>
+            <Swiper
+
+                onSwiper={(s) => {
+                    setSwiper(s);
+                }}
+                direction={'vertical'}
+                spaceBetween={50}
+                mousewheel={true}
+                observer ={true}	// 추가
+                observeParents = {true}	// 추가
+            >
+                {
+                    videoList?.map((video:VideoInfo,index) =>
+                        videoList.length -1 === index?
+                            <SwiperSlide key={index}>
+                                <VideoDetail swiper={swiper}  muted={muted} setMuted={setMuted} video={video} key={index}/>
+                                <div className="checkLast" ref={ref}></div>
+                            </SwiperSlide>
+                            :
+                            <SwiperSlide key={index}>
+                                <VideoDetail swiper={swiper} muted={muted} setMuted={setMuted} video={video} key={index}/>
+                            </SwiperSlide>
+                    )
+                }
+            </Swiper>
+        </motion.div>
     )
 }

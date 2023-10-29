@@ -13,6 +13,7 @@
     "appwrite": "^13.0.0",
     "canvas": "^2.11.2",
     "debounce": "^1.2.1",
+    "framer-motion": "^10.16.4",
     "image-js": "^0.35.4",
     "moment": "^2.29.4",
     "next": "13.5.4",

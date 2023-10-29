@@ -4,6 +4,7 @@ interface VideoInfo {
     userName:string,
     description:string,
     url:string,
+    thumb:string,
     date:Date,
     hashtags:string[],
     title:string,
