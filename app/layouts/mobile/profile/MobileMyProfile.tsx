@@ -58,16 +58,18 @@ export default function MobileMyProfile(){
             exit={{ opacity:0 }}
             initial={{ opacity:0 }}
             animate={{ opacity:1 }}>
-            <div className={styles.m_myProfile}>
-                <div className={styles.myProfile_top}>
-                    <div onClick={()=>{setView('home')}}>
-                        <i className="fa-solid fa-arrow-left"></i>
-                    </div>
-                    <div>
-                        <span>프로필</span>
-                    </div>
-                    <div></div>
+
+            <div className={styles.myProfile_top}>
+                <div onClick={()=>{setView('home')}}>
+                    <i className="fa-solid fa-arrow-left"></i>
                 </div>
+                <div>
+                    <span>프로필</span>
+                </div>
+                <div></div>
+            </div>
+
+            <div className={styles.m_myProfile}>
                 <div className={styles.m_myProfile_detail}>
 
                     <div className={styles.m_myProfile_avatar}>
@@ -108,13 +110,13 @@ export default function MobileMyProfile(){
                             <i className="fa-solid fa-lock"></i>
                         </button>
                     </div>
+                    <ProfileVideoList videos={
+                        curList==='video'?videoList
+                            :curList==='like'?likeList
+                                :curList==='private'?privateList
+                                    :null
+                    } key={curList}/>
                 </div>
-                <ProfileVideoList videos={
-                    curList==='video'?videoList
-                        :curList==='like'?likeList
-                            :curList==='private'?privateList
-                                :null
-                } key={curList}/>
             </div>
         </motion.div>
     )
