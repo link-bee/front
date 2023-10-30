@@ -38,6 +38,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
             //닫아주자 코멘트
             // Array.from(commentList).map((comment) =>{
             //     console.log(comment?.classList)
+            //
             // })
 
             videoRef.current?.play();
