@@ -5,6 +5,7 @@
   --color-light-pink:#ff7b90;
   --color-gray:#A2A2A2;
   --color-light-gray: rgba(241, 241, 242, 0.5);
+  --color-header:#F2F0EB;
   --color-beige:#F1EFE9;
   --color-light-beige:#E8E5E3;
   --color-white: rgba(255, 255, 255);
@@ -52,7 +53,6 @@
   z-index: var(--m-zIndex-middle);
 }
 body{
-  height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
 

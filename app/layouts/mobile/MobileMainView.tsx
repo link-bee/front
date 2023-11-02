@@ -1,5 +1,4 @@
 import React from "react";
-import {usePathname} from "next/navigation";
 import MobileTopNav from "@/app/layouts/mobile/header/MobileTopNav";
 import MobileBottomNav from "@/app/layouts/mobile/bottom/MobileBottomNav";
 import './mobile.scss'
@@ -8,7 +7,7 @@ import MobileMyProfile from "@/app/layouts/mobile/profile/MobileMyProfile";
 import MobileUpload from "@/app/layouts/mobile/upload/MobileUpload";
 import useViewStore from "@/app/store/view";
 
-export default function MobileMainView({children}: {children:React.ReactNode}){
+export default function MobileMainView(){
     const { curView } = useViewStore()
 
     return(
