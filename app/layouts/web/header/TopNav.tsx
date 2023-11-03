@@ -1,8 +1,10 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import Image from "next/image";
 import SearchInput from "@/app/layouts/web/header/search/SearchInput";
+import useViewStore from "@/app/store/view";
 
 export default function TopNav(){
+    const { setView } = useViewStore()
     return(
         <>
             <header className="top_nav">
@@ -15,7 +17,11 @@ export default function TopNav(){
                <SearchInput/>
                 <div className="function_list">
                     <ul>
-                        <li><button className="upload_btn"><i className="fa-solid fa-plus"></i> 업로드</button></li>
+                        <li>
+                            <button className="upload_btn" onClick={()=>{setView('upload')}}>
+                                <i className="fa-solid fa-plus"></i> 업로드
+                            </button>
+                        </li>
                         <li><button className="login_btn">로그인</button></li>
                         <li>
                             <button className="dots_btn"><i className="fa-solid fa-ellipsis-vertical "></i>

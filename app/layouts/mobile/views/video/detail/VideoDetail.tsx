@@ -3,7 +3,6 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import VideoComment from "@/app/layouts/mobile/views/video/detail/comment/VideoComment";
-import {SwiperModule} from "swiper/types";
 
 export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:boolean, setMuted:Function}) {
     const [videoSectionRef, inVideoView] = useInView();
@@ -19,18 +18,14 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
     const [openComment,setOpenComment] = useState<boolean>(false)
 
     useEffect(() => {
-        if(openComment){
-            props.swiper.allowTouchMove = false
-        }else{
-            props.swiper.allowTouchMove = true
-        }
+        props.swiper.allowTouchMove = !openComment;
     }, [openComment]);
 
     useEffect(() => {
         if(inVideoView){
             var videoList:any = document.getElementsByClassName("video-player")
 
-            var commentList:any = document.getElementsByClassName("video_comment")
+            // var commentList:any = document.getElementsByClassName("video_comment")
 
             Array.from(videoList).map((video:any)=>{
                 video?.pause()

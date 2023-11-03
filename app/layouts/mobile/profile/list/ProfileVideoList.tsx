@@ -1,35 +1,20 @@
 import {motion} from "framer-motion"
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import Image from "next/image";
 import styles from "./ProfileVideoList.module.scss"
+import VideoPopup from "@/app/layouts/mobile/profile/list/popup/VideoPopUp";
 
 export default function ProfileVideoList(props:{videos:VideoInfo[]|null}){
-    const [hover, setHover] = useState<boolean[]>()
+    const [selectedVideo, setSelectedVideo] = useState<VideoInfo|null>(null);
 
-    useEffect(() => {
-        if(props.videos?.length!==0){
-            var newArr = new Array(props.videos?.length);
-            var max:number = props.videos?.length?props.videos?.length:0;
-            for(var i=0; i<max; i++){
-                newArr[i] = false;
-            }
-            setHover([...newArr])
-        }
-    }, [props.videos]);
+    const handleVideoClick = (video:VideoInfo) => {
+        setSelectedVideo(video);
+    };
 
-    const setHoverIndex = (idx:number) =>{
-        if(hover){
-            if(hover?.length!==0){
-                var newArr:boolean[] = [...hover]
-                var max:number = props.videos?.length?props.videos?.length:0;
-                for(var i=0; i<max; i++){
-                    newArr[i] = false;
-                }
-                newArr[idx] = !hover[idx]
-                setHover(newArr)
-            }
-        }
-    }
+    const closeVideoPopup = () => {
+        setSelectedVideo(null);
+    };
+
 
     return(
         <motion.div
@@ -42,21 +27,17 @@ export default function ProfileVideoList(props:{videos:VideoInfo[]|null}){
                 props.videos.map((video,idx)=>{
                     return(
                         <div className={styles.profile_video} key={idx}>
-                            <button onClick={(e:React.MouseEvent) => setHoverIndex(idx)}>
-                                {
-                                    hover?
-                                    hover[idx] ?
-                                    <video  src={video.url}
-                                            autoPlay={true}/> :
-                                    <Image src={video.thumb} alt="Main Logo" width="1000" height="1000"/>:
-                                    null
-                                }
+                            <button onClick={() => handleVideoClick(video)}>
+                                <Image src={video.thumb} alt="Main Logo" width="1000" height="1000"/>
                             </button>
                         </div>
                     )
                 })
                 :null
             }
+            {selectedVideo && (
+                <VideoPopup videoUrl={selectedVideo.url} onClose={closeVideoPopup} />
+            )}
         </motion.div>
     )
 }

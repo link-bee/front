@@ -22,11 +22,9 @@ export default function Home() {
             {
               (isMobile!==undefined)?
                   isMobile?
-                      <MobileMainView>
-                      </MobileMainView>
+                      <MobileMainView/>
                       :
-                      <MainView>
-                      </MainView>
+                      <MainView/>
                       :
                   <></>
             }

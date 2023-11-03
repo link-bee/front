@@ -5,6 +5,7 @@
   --color-light-pink:#ff7b90;
   --color-gray:#A2A2A2;
   --color-light-gray: rgba(241, 241, 242, 0.5);
+  --color-header:#F2F0EB;
   --color-beige:#F1EFE9;
   --color-light-beige:#E8E5E3;
   --color-white: rgba(255, 255, 255);
@@ -18,13 +19,14 @@
   --m-padding-default:12px;
   --m-padding-small:8px;
   --m-padding-micro:4px;
-  --m-zIndex-top:100;
-  --m-zIndex-topNav:90;
-  --m-zIndex-videoComment:85;
-  --m-zIndex-videoBtn:80;
-  --m-zIndex-video:70;
-  --m-zIndex-sideNav:80;
-  --m-zIndex-middle:50;
+  --m-zIndex-popup:100;
+  --m-zIndex-top:70;
+  --m-zIndex-topNav:60;
+  --m-zIndex-videoComment:55;
+  --m-zIndex-videoBtn:50;
+  --m-zIndex-sideNav:50;
+  --m-zIndex-video:40;
+  --m-zIndex-middle:30;
   --m-zIndex-bottomNav:0;
   --font-largest:30px;
   --font-large:18px;
@@ -51,7 +53,6 @@
   z-index: var(--m-zIndex-middle);
 }
 body{
-  height: 100vh;
   height: calc(var(--vh, 1vh) * 100);
 }
 
