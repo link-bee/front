@@ -49,7 +49,11 @@ export default function MobileUpload(){
                                     <div className={styles.upload_thumb}>
                                         {
                                             imageUrl===''?
-                                                <i className="fa-regular fa-image"></i>
+                                                <i className="fa-regular fa-image">
+                                                    <div style={{display:"flex", justifyContent:"center",alignContent:"center"}}>
+                                                        <span>썸네일 업로드</span>
+                                                    </div>
+                                                </i>
                                                 :
                                                 <Image src={imageUrl} width={90} height={110}  alt="Thumbnail" />
                                         }
@@ -60,9 +64,9 @@ export default function MobileUpload(){
                         </div>
 
                         <div className={styles.contents_btn}>
-                            <button>#해시태그</button>
+                            {/*<button>#해시태그</button>*/}
                             <label htmlFor="file">
-                                <div className={styles.upload_video}><i className="fa-solid fa-video"></i> 동영상</div>
+                                <div className={styles.upload_video}><i className="fa-solid fa-video"></i> 동영상 업로드</div>
                             </label>
                             <input type="file" name="file" style={{display:"none"}} id="file"  accept="video/*" />
                         </div>

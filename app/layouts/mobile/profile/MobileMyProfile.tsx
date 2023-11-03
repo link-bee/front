@@ -57,8 +57,8 @@ export default function MobileMyProfile(){
         <motion.div
             exit={{ opacity:0 }}
             initial={{ opacity:0 }}
-            animate={{ opacity:1 }}>
-
+            animate={{ opacity:1 }}
+            className={styles.myProfile_wrap}>
             <div className={styles.myProfile_top}>
                 <div onClick={()=>{setView('home')}}>
                     <i className="fa-solid fa-arrow-left"></i>

@@ -5,9 +5,12 @@ import './web.scss'
 import VideoList from "@/app/layouts/web/views/video/VideoList";
 import useViewStore from "@/app/store/view";
 import UploadView from "@/app/layouts/web/views/upload/UploadView";
+import Login from "@/app/layouts/web/login/Login";
+import useLoginStore from "@/app/store/login";
 
 export default function MainView(){
     const { curView } = useViewStore();
+    const {loginForm} = useLoginStore()
     return(
         <>
             <TopNav/>
@@ -23,7 +26,9 @@ export default function MainView(){
                         return;
                 }
             })()}
-
+            {
+                loginForm&&<Login/>
+            }
         </>
     )
 }

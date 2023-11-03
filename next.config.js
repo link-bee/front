@@ -19,6 +19,15 @@ const nextConfig = {
         domains: ['commondatastorage.googleapis.com'],
     },
     reactStrictMode: false,
+    swcMinify: true,
+    async rewrites() {
+    return [
+        {
+            source: "/:path*",
+            destination: "http://151.145.38.133:8084/:path*",
+        },
+    ];
+},
 }
 
 module.exports = nextConfig
