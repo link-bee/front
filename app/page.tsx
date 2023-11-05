@@ -6,12 +6,12 @@ import MainView from "@/app/layouts/web/MainView";
 import './globals.scss'
 import {JwtPayload ,jwtDecode} from "jwt-decode";
 import {number} from "prop-types";
-import useLoginStore from "@/app/store/login";
+import useUserStore from "@/app/store/user";
 import useTokenStore from "@/app/store/token";
 
 export default function Home() {
     const [isMobile, setIsMobile] = useState<boolean>();
-    const { setStatus } =useLoginStore()
+    const { setStatus } =useUserStore()
     const { setAccessToken, setRefreshToken } = useTokenStore()
 
     useEffect(() => {

@@ -16,8 +16,13 @@
         display: flex;
         align-items: center;
 
-        span{
-            font-size: var(--font-largest)
+        button{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            span{
+                font-size: var(--font-largest)
+            }
         }
     }
 
@@ -94,8 +99,9 @@
                     width: 130px;
                 }
 
-                .upload_btn{
-                    border: 1px solid var(--color-light-gray);
+                .upload_btn,
+                .profile_btn{
+                    border: 1px solid var(--color-black);
                 }
 
                 .login_btn{
@@ -182,8 +188,8 @@
             align-items: center;
             justify-content: center;
             button{
-                padding: var(--padding-default);
-                margin: var(--padding-default);
+                padding:var(--padding-default) ;
+                margin-top: var(--padding-default);
                 display: flex;
                 justify-content: start;
                 align-items: center;

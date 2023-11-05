@@ -2,32 +2,40 @@ import React from "react";
 import Image from "next/image";
 import SearchInput from "@/app/layouts/web/header/search/SearchInput";
 import useViewStore from "@/app/store/view";
-import useLoginStore from "@/app/store/login";
+import useUserStore from "@/app/store/user";
 
 export default function TopNav(){
-    const { setLoginFromOpen, status, LogOut } = useLoginStore()
+    const { setLoginFromOpen, status, LogOut } = useUserStore()
     const { setView } = useViewStore()
+
+    const changeView = (view:string) => {
+        if(status || view === 'home'){
+            setView(view);
+        }else{
+            setLoginFromOpen(true)
+        }
+    }
     return(
         <>
             <header className="top_nav">
                 <div className="logo">
-                    <button>
+                    <button onClick={()=>{changeView('home')}}>
                         <Image src="/favicon.png" alt="Main Logo" width="60" height="60"/>
+                        <span>Link</span>
                     </button>
-                    <span>Link</span>
                 </div>
                <SearchInput/>
                 <div className="function_list">
                     <ul>
                         <li>
-                            <button className="upload_btn" onClick={()=>{setView('upload')}}>
+                            <button className="upload_btn" onClick={()=>{changeView('upload')}}>
                                 <i className="fa-solid fa-plus"></i> 업로드
                             </button>
                         </li>
                         <li>
                             {
                                 status?
-                                <button className="profile_btn" onClick={()=>{setView('profile')}}>
+                                <button className="profile_btn" onClick={()=>{changeView('profile')}}>
                                     프로필
 
                                 </button>
