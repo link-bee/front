@@ -1,0 +1,228 @@
+.video_detail{
+  position: relative;
+  width: 100%;
+  display: flex;
+  height: 80%;
+  background-color: white;
+  justify-content: center;
+  align-items: center;
+
+  .clickable_area{
+    position: absolute;
+    height: 100%;
+    width: 50%;
+  }
+  .sound_con{
+    position: absolute;
+    z-index: var(--m-zIndex-videoBtn);
+    color: var(--color-black);
+    width: 150px;
+    height: 40px;
+    left: 36.5%;
+    font-size: var(--m-font-defualt);
+    font-weight: bold;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+
+    span{
+      padding-left: 3px;
+    }
+  }
+  .video_caption{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    top: 0%;
+    align-items: start;
+    width: 50%;
+
+    div{
+      padding-bottom: 5px;
+    }
+    .video_hashTag{
+      display: flex;
+      padding-bottom: 10px;
+      button{
+        color: white;
+        font-size: var(--m-font-micro);
+        padding-right: 2px;
+      }
+    }
+
+    .video_uploader{
+      position: absolute;
+      left: -50px;
+      top: 20px;
+      font-size: var(--m-font-small);
+    }
+    .video_name{
+      font-size: var(--m-font-large);
+
+    }
+    .video_description{
+      font-size: var(--m-font-small);
+      width: 100%;
+      height: fit-content;
+      text-align: start;
+
+    }
+  }
+  .video_btn_list{
+    position: absolute;
+    top: 55%;
+    right: calc(100% - 70%);
+    z-index: var(--m-zIndex-videoBtn);
+    display: flex;
+    flex-direction: column;
+    width: 50px;
+    height: fit-content;
+
+    button{
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      width: 40px;
+      height: 40px;
+      background-color: transparent;
+      z-index: var(--m-zIndex-videoBtn);
+      margin-bottom: 25px;
+
+      i {
+        font-size: calc(var(--m-font-largest) * 1.1);
+      }
+      span{
+        margin-top: 2px;
+      }
+    }
+
+    .user_avatar{
+      width: 40px;
+      height: 40px;
+
+      i {
+        font-size: calc(var(--m-font-largest) * 1.2);
+        border: 2px solid var(--color-pink);
+        border-radius: 50%;
+      }
+      span{
+        margin-top: 2px;
+        color: var(--color-white);
+
+        i{
+          border-radius: 50px;
+          background-color: white;
+          position: relative;
+          color: var(--color-pink);
+          font-size: var(--font-defualt);
+          top: -10px;
+        }
+      }
+    }
+  }
+
+  .play_btn{
+    opacity: 0.7;
+    top: calc(50% - 25px);
+    right: 55%;
+    position: absolute;
+    z-index: var(--m-zIndex-videoBtn);
+
+    i{
+      font-size: calc(var(--m-font-largest) * 2);
+      text-shadow: 1px 1px 1px black;
+    }
+  }
+  .video_section{
+    display: flex;
+    inset: 0px;
+    z-index: var(--zIndex-middle);
+    pointer-events: none;
+    width: 50%;
+  }
+
+  .video_comment{
+    width: 100%;
+    top: calc(100% + 50px);
+    z-index: 0;
+    height: 650px;
+    position: relative;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    overflow: hidden;
+
+    &.open {
+      z-index: var(--m-zIndex-videoComment);
+      transition: 0.5s ease;
+      top: calc(100% - 600px);
+    }
+    &.close{
+      height: 0px;
+      transition: 0.5s ease;
+    }
+
+    .comment_top{
+      display: flex;
+      justify-content: space-between;
+      padding: 0 var(--m-padding-default);
+      height: 40px;
+      align-items: center;
+      border-bottom: 1px solid var(--color-light-gray);
+    }
+    .comment_list_wrap{
+      display: flex;
+      flex-direction: column;
+      height: 500px;
+      overflow-y: scroll;
+      padding: var(--m-padding-default);
+
+      .comment_list{
+        height: 600PX;
+        width: 100%;
+
+        .comment_detail{
+          display: flex;
+          width: 100%;
+          padding-bottom: var(--m-padding-big);
+
+          .comment_info{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: start;
+            padding: 0 var(--m-padding-default);
+
+            .comment_user{
+              font-size: var(--m-font-defualt);
+              font-weight: bold;
+            }
+            .comment_contents{
+              text-align: start;
+              font-size: var(--m-font-defualt);
+              padding-bottom: var(--m-padding-default);
+            }
+
+            .comment_btn_list{
+              font-size: var(--m-font-small);
+              display: flex;
+              width: 100%;
+              justify-content: space-between;
+
+              .comment_reply_btn{
+                position: sticky;
+                cursor: pointer;
+                right: 100%;
+                margin-left: 40px;
+
+
+              }
+
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,30 @@
+.video_wrap{
+  top: 60px;
+  left: 260px;
+  width: calc(100% - 260px);
+  height: calc(100vh - 60px);
+  overflow: hidden;
+  position: absolute;
+  transition: 0.5s ease;
+  display: flex;
+  background-color: var(--color-light-gray);
+
+  @media (max-width: 1000px)  {
+    left: 100px;
+    width: calc(100% - 100px);
+  }
+}
+
+.video_main {
+  height: calc(100vh - 55px);
+  z-index: var(--m-zIndex-middle);
+  position: absolute;
+  overflow: hidden;
+  margin: 20px;
+  width: calc(100% - 40px);
+  background-color: var(--color-white) !important;
+  border-radius: 10px;
+}
+.swiper{
+  background-color: white;
+}

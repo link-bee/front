@@ -1,8 +1,10 @@
 'use client';
 
+import styles from './VideoDetail.module.scss'
 import React, {useEffect, useRef, useState} from "react";
 import {useInView} from "react-intersection-observer";
-import VideoComment from "@/app/layouts/mobile/views/video/detail/comment/VideoComment";
+import VideoComment from "@/app/layouts/web/views/video/detail/comment/VideoComment";
+import Image from "next/image";
 
 export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:boolean, setMuted:Function}) {
     const [videoSectionRef, inVideoView] = useInView();
@@ -69,15 +71,15 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
     });
 
     return(
-        <div className="video_detail"
+        <div className={styles.video_detail}
              ref={videoSectionRef}>
-            <div className="clickable_area"
+            <div className={styles.clickable_area}
                 ref={clickableArea}>
             </div>
-            <div className="video_section">
+            <div className={styles.video_section}>
                 <video
                     ref={videoRef}
-                    width={"100%"}
+                    width={"70%"}
                     controls={false}
                     muted={props.muted}
                     className="video-player w-2/3 h-full aspect-square object-cover rounded-xl "
@@ -90,7 +92,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     <></>
                     :
                     <button ref={playBtnRef}
-                            className="play_btn"
+                            className={styles.play_btn}
                             onClick={()=>{
                                 setPlay(true);
                                 videoRef.current?.play()}
@@ -100,8 +102,8 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     </button>
             }
 
-            <div className="video_btn_list" ref={videoBtnListRef}>
-                <button className="user_avatar">
+            <div className={styles.video_btn_list} ref={videoBtnListRef}>
+                <button className={styles.user_avatar}>
                     <i className="fa-solid fa-face-smile"></i>
                     <span>
                         <i className="fa-solid fa-circle-plus"></i>
@@ -121,15 +123,15 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
             </div>
             {
                 props.muted?
-                <button className="sound_con" ref={soundBtnRef}  onClick={()=>{props.setMuted(!props.muted)}}>
+                <button className={styles.sound_con} ref={soundBtnRef}  onClick={()=>{props.setMuted(!props.muted)}}>
                     <i className="fa-solid fa-volume-xmark" ></i> <span>음소거 해제</span>
                 </button>
                     :
                     <></>
             }
 
-            <div className="video_caption" ref={videoCaption}>
-                <div className="video_hashTag">
+            <div className={styles.video_caption} ref={videoCaption}>
+                <div className={styles.video_hashTag}>
                     {
                         props.video?.hashtags?.map((hashtag, idx)=>{
                             if(idx<4)
@@ -139,17 +141,17 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                         })
                     }
                 </div>
-                <div className="video_uploader">
-                    {props.video.userName}
+                <div className={styles.video_uploader}>
+                    <Image src="/images/man.jpg" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
                 </div>
-                <div className="video_name">
+                <div className={styles.video_name}>
                     {props.video.title}
                 </div>
-                <div className="video_description">
+                <div className={styles.video_description}>
                     {props.video.description}
                 </div>
             </div>
-            <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={props.video.comments}/>
+            {/*<VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={props.video.comments}/>*/}
         </div>
     )
 }

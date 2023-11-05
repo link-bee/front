@@ -1,9 +1,11 @@
 'use client'
 import React, {FunctionComponent, useEffect, useState} from "react";
 import {useInView} from "react-intersection-observer";
-import VideoDetail from "@/app/layouts/mobile/views/video/detail/VideoDetail";
+import VideoDetail from "@/app/layouts/web/views/video/detail/VideoDetail";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {motion} from "framer-motion"
+import styles from './Video.module.scss'
+
 export default function VideoView() {
     const [ref, inView] = useInView();
     const [page, setPage] = useState<number>(1)
@@ -44,27 +46,27 @@ export default function VideoView() {
         <motion.div
             exit={{ opacity:0 }}
             initial={{ opacity:0 }}
-            animate={{ opacity:1 }}>
+            animate={{ opacity:1 }}
+            className={styles.video_wrap}
+        >
             <Swiper
-
+                className={styles.video_main}
                 onSwiper={(s) => {
                     setSwiper(s);
                 }}
                 direction={'vertical'}
                 spaceBetween={50}
                 mousewheel={true}
-                observer ={true}	// 추가
-                observeParents = {true}	// 추가
             >
                 {
                     videoList?.map((video:VideoInfo,index) =>
                         videoList.length -1 === index?
-                            <SwiperSlide key={index}>
+                            <SwiperSlide className={styles.swiper} key={index}>
                                 <VideoDetail swiper={swiper}  muted={muted} setMuted={setMuted} video={video} key={index}/>
                                 <div className="checkLast" ref={ref}></div>
                             </SwiperSlide>
                             :
-                            <SwiperSlide key={index}>
+                            <SwiperSlide  className={styles.swiper} key={index}>
                                 <VideoDetail swiper={swiper} muted={muted} setMuted={setMuted} video={video} key={index}/>
                             </SwiperSlide>
                     )
