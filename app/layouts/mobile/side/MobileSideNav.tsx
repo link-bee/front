@@ -1,5 +1,7 @@
 import React, {useEffect, useRef, useState} from "react";
 import styles from "./MobileSideNav.module.scss"
+import useUserStore from "@/app/store/user";
+import useViewStore from "@/app/store/view";
 
 type sideOpenProps = {
     sideOpen: Boolean;
@@ -7,6 +9,17 @@ type sideOpenProps = {
 };
 
 export default function MobileSideNav(props:sideOpenProps){
+    const { setLoginFromOpen, status, LogOut } = useUserStore()
+    const { setView } = useViewStore()
+
+    const changeView = (view:string) => {
+        if(status || view === 'home'){
+            setView(view);
+        }else{
+            setLoginFromOpen(true)
+        }
+    }
+    
     const sideBarRef = useRef<HTMLDivElement>(null);
 
     const onClickOutside = (event: Event) => {
@@ -36,7 +49,7 @@ export default function MobileSideNav(props:sideOpenProps){
                 <div className={styles.function_list}>
                     <ul>
                         <li>
-                            <button className={styles.home_btn}>
+                            <button className={styles.home_btn} onClick={()=>changeView('home')}>
                                 <i className="fa-solid fa-house" ></i>
                                 홈
                             </button>
@@ -51,9 +64,16 @@ export default function MobileSideNav(props:sideOpenProps){
                     </ul>
                 </div>
 
-                <button className={styles.login_btn}>
-                    로그인
-                </button>
+                {
+                    status?
+                    <button className={styles.login_btn} onClick={()=>LogOut()}>
+                        로그아웃
+                    </button>
+                        :
+                    <button className={styles.login_btn} onClick={()=>setLoginFromOpen(true)}>
+                        로그인
+                    </button>
+                }
             </div>
 
             <div className={styles.side_bar_info}>

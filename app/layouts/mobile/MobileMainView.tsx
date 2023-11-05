@@ -6,8 +6,11 @@ import MobileVideoView from "@/app/layouts/mobile/views/video/MobileVideoView";
 import MobileMyProfile from "@/app/layouts/mobile/profile/MobileMyProfile";
 import MobileUpload from "@/app/layouts/mobile/upload/MobileUpload";
 import useViewStore from "@/app/store/view";
+import MobileLoginView from "@/app/layouts/mobile/views/login/MobileLoginView";
+import useUserStore from "@/app/store/user";
 
 export default function MobileMainView(){
+    const { loginForm } = useUserStore()
     const { curView } = useViewStore()
 
     return(
@@ -30,6 +33,9 @@ export default function MobileMainView(){
                         return;
                 }
             })()}
+            {
+                loginForm&&<MobileLoginView/>
+            }
         </>
     )
 }

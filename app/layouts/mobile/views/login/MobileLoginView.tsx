@@ -3,7 +3,7 @@ import React, {useEffect, useState} from "react";
 import useTokenStore from "@/app/store/token";
 import useUserStore from "@/app/store/user";
 
-export default function LoginView(){
+export default function MobileLoginView(){
     const { Login, setLoginFromOpen, setStatus, Join } = useUserStore()
     const { setAccessToken, setRefreshToken } = useTokenStore()
     const [loginType, setLoginType] = useState<string>('')

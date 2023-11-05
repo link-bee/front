@@ -259,6 +259,17 @@
             display: flex;
             border-radius: 50%;
         }
+        .comment_need_login{
+             width: 200px;
+             height: 50px;
+             justify-content: center;
+             align-items: center;
+             display: flex;
+             border-radius: 50%;
+            span{
+                font-weight: bold;
+            }
+        }
     }
 }
 .a{
