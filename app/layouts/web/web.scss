@@ -1,3 +1,31 @@
+.cover_wrap{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+
+}
+.phone{
+    width: 600px;
+    padding-left: 200px;
+    height: 800px;
+    position: absolute;
+    right: 200px;
+    overflow: hidden;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cover{
+    width: 350px;
+    height: 730px;
+    position: absolute;
+    overflow: hidden;
+    background-size: cover;
+    border-radius: 30px;
+}
+
 .top_nav{
     z-index: var(--zIndex-topNav);
     display: flex;

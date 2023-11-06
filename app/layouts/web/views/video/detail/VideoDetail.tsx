@@ -142,7 +142,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     }
                 </div>
                 <div className={styles.video_uploader}>
-                    <Image src="/images/man.jpg" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
+                    <Image src="/avatar.png" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
                 </div>
                 <div className={styles.video_name}>
                     {props.video.title}

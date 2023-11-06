@@ -1,20 +1,29 @@
-.video_popup{
-  position: fixed;
+.video_popup_wrap{
   top: 0;
-  left: 0;
+  position: absolute;
   z-index: var(--m-zIndex-popup);
   width: 100%;
-  height: 100%;
+  height: 200%;
   display: flex;
   justify-content: center;
   align-content: center;
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.video_popup{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  overflow: hidden;
 }
 
 .video_container{
   position: fixed;
   top: calc(50% - 225px);
-  left:  calc(50% - 125px);
+  //left:  calc(50% - 125px);
   width: 250px;
   height: 450px;
   display: flex;

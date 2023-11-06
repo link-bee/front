@@ -1,12 +1,12 @@
 interface VideoInfo {
-    id:number,
-    userId:string,
-    userName:string,
+    idx:number,
+    uidx:string,
+    uname:string,
     description:string,
     url:string,
     thumb:string,
     date:Date,
-    hashtags:string[],
+    hashTag:string,
     title:string,
     likes:number,
     isLikes:boolean,
@@ -14,12 +14,14 @@ interface VideoInfo {
 };
 
 interface VideoComments {
-    id: number,
+    idx: number,
     userId:string,
     userName:string,
-    contents: string,
-    date: Date,
+    content: string,
+    date: string,
     likes: number,
-    isLikes: boolean,
-    isUnlikes: boolean,
+    unLikes: boolean,
+    midx:number,
+    vidx:number
+
 }

@@ -11,25 +11,41 @@ import useTokenStore from "@/app/store/token";
 
 export default function Home() {
     const [isMobile, setIsMobile] = useState<boolean>();
-    const { setStatus } =useUserStore()
+    const { setStatus,setUserInfo } =useUserStore()
     const { setAccessToken, setRefreshToken } = useTokenStore()
 
     useEffect(() => {
         setIsMobile( /Mobi|Android/i.test(navigator.userAgent))
         let vh = window.innerHeight * 0.01;
 
-        if (localStorage.jwt) {
-            const payload : JwtPayload = jwtDecode(localStorage.jwt)
+        if (localStorage.access) {
+            const payload : JwtPayload = jwtDecode(localStorage.access)
             const date = new Date(0);
             date.setUTCSeconds(payload.exp ? payload.exp : 0);
 
             if(date > new Date()){
-                console.log('로그인요청')
-                // setStatus(true)
+                setStatus(true);
+                setAccessToken(localStorage.access)
+                setRefreshToken(localStorage.refresh)
+                setUserInfo(jwtDecode(localStorage.access))
             }else{
-                setStatus(false)
-                setAccessToken('')
-                setRefreshToken('')
+                fetch('/login/reissue',{method:"POST",
+                    body: JSON.stringify({
+                        "accessToken": localStorage.access,
+                        "refreshToken": localStorage.refresh,
+                    }),
+                    headers: {
+                        "Content-Type": "application/json",
+                    }})
+                    .then((response) => response.json())//읽어온 데이터를 json으로 변환
+                    .then((json) => {
+                        console.log(json)
+
+                        if(json.code==='401') {
+                            localStorage.removeItem('access');
+                            localStorage.removeItem('refresh');
+                        }
+                    })
             }
         }
 
@@ -42,11 +58,13 @@ export default function Home() {
             <script src="https://kit.fontawesome.com/dc0f295e44.js" crossOrigin="anonymous"></script>
             {
               (isMobile!==undefined)?
-                  isMobile?
+                  !isMobile?
+                      <MainView>
+                          <MobileMainView/>
+                      </MainView>
+                  :
                       <MobileMainView/>
-                      :
-                      <MainView/>
-                      :
+                  :
                   <></>
             }
       </>

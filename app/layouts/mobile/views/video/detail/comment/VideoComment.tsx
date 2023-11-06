@@ -15,7 +15,7 @@ export default function VideoComment(props:{setOpenComment :Function,openComment
 
                 </div>
                 <div>
-                    <span>1569 comments</span>
+                    <span>{props?.comments?.length} comments</span>
                 </div>
                 <div>
                     <button onClick={()=>{props.setOpenComment(false)}}>
@@ -31,7 +31,7 @@ export default function VideoComment(props:{setOpenComment :Function,openComment
                     status?
                     <>
                         <div className="comment_avatar">
-                            <Image src="/images/man.jpg" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
+                            <Image src="/avatar.png" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
                         </div>
                         <InputEmoji
                             value={text}

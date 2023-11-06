@@ -28,10 +28,10 @@ export default function MobileVideoView() {
     }, []);
 
     const productFetch = () => {
-        // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
-        // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
-            fetch('/video.json',{
+            fetch('/api/video/lista',{
+                method:"POST",
                 headers: {
+                    "Content-Type": "application/json",
                     Authorization: `Bearer ${accessToken}`,
                     // 'Content-Type': 'application/x-www-form-urlencoded',
                 }})

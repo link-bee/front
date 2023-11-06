@@ -9,28 +9,16 @@ import LoginView from "@/app/layouts/web/views/login/LoginView";
 import ProfileView from "@/app/layouts/web/views/profile/ProfileView";
 import VideoView from "@/app/layouts/web/views/video/VideoView";
 
-export default function MainView(){
+export default function MainView({children}:{children:React.ReactNode}){
     const { curView } = useViewStore();
     const {loginForm} = useUserStore()
     return(
-        <>
-            <TopNav/>
-            <SideNav/>
-            {(() => {
-                switch (curView) {
-                    case 'home':
-                        return <VideoView/>;
-                    case 'upload':
-                        return <UploadView/>;
-                    case 'profile':
-                        return <ProfileView/>;
-                    default:
-                        return;
-                }
-            })()}
-            {
-                loginForm&&<LoginView/>
-            }
-        </>
+        <div className="cover_wrap">
+            <div className="phone"  style={{backgroundImage:("url(background.webp)")}}>
+                <div  className="cover">
+                    {children}
+                </div>
+            </div>
+        </div>
     )
 }

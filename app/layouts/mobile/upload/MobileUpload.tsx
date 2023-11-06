@@ -27,7 +27,9 @@ export default function MobileUpload(){
             className={styles.upload_wrap}>
             <div className={styles.upload_top}>
                 <div onClick={()=>{setView('home')}}>
-                    <i className="fa-solid fa-arrow-left"></i>
+                    <button>
+                        <i className="fa-solid fa-arrow-left"></i>
+                    </button>
                 </div>
                 <div>
                     <span>게시</span>

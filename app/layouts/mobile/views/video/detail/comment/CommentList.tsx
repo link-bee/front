@@ -6,6 +6,7 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
     const [showPage, setShowPage] = useState<VideoComments[]>()
     const [loadPage, setLoadPage] = useState<number>(0);
 
+
     useEffect(() => {
         var paging = [];
         if(props.comments == null)
@@ -50,7 +51,7 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
                         return(
                             <div className="comment_detail" key={idx}>
                                 <div className="comment_avatar">
-                                    <Image src="/images/man.jpg" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
+                                    <Image src="/avatar.png" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
                                 </div>
 
                                 <div className="comment_info">
@@ -58,12 +59,12 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
                                         {comment?.userName}
                                     </span>
                                     <span className="comment_contents">
-                                        {comment?.contents}
+                                        {comment?.content}
                                     </span>
 
                                     <div className="comment_btn_list">
-                                        <span style={{paddingRight:'10px', width:'40px'}}>
-                                            {/*{comment?.date}*/}
+                                        <span style={{paddingRight:'10px', width:'300px',textAlign: 'start'}}>
+                                            {comment?.date}
                                         </span>
                                         {/*<button className="comment_reply_btn">*/}
                                         {/*    Reply*/}
@@ -73,7 +74,7 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
                                         {/*</button>*/}
                                         <div>
                                             {
-                                                comment.isLikes?
+                                                comment.likes?
                                                 <button  style={{paddingRight:'15px'}}>
                                                     <i className="fa-solid fa-heart"
                                                        style={{color:"red", fontSize:'18px', paddingRight:'3px'}}></i>
@@ -89,8 +90,8 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
                                             }
                                             <button>
                                                 <i className="fa-solid fa-heart-crack"
-                                                   style={{color: comment.isUnlikes?"red":"white", fontSize:'16px',
-                                                       textShadow:comment.isUnlikes?'':'0 0 3px black'}}></i>
+                                                   style={{color: comment.unLikes?"red":"white", fontSize:'16px',
+                                                       textShadow:comment.unLikes?'':'0 0 3px black'}}></i>
                                             </button>
                                         </div>
                                     </div>

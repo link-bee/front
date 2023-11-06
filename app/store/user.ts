@@ -8,7 +8,22 @@ type User = {
     Login : Function,
     LogOut : Function,
     Join : Function,
+    info:UserInfo,
+    setUserInfo:Function,
 }
+
+const emptyUser = {
+    "sub": '',
+    "auth": '',
+    "linked": [],
+    "myLink": [],
+    "likes": [],
+    "email": '',
+    "id": 0,
+    "username": '',
+    "exp": 0
+}
+
 const useUserStore = create<User>((set)=>({
     loginForm:false,
     setLoginFromOpen:(loginForm:boolean)=>set({loginForm:loginForm}),
@@ -18,14 +33,17 @@ const useUserStore = create<User>((set)=>({
         fetch(`/login/basic/login?email=${id}&password=${pw}`,{method:"POST"})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
-                localStorage.setItem("jwt", json.refreshToken);
-
+                localStorage.setItem("refresh", json.refreshToken);
+                localStorage.setItem("access", json.accessToken);
                 return callBack(json);
             })
         }
     ),
+    info:emptyUser,
+    setUserInfo :(info:UserInfo)=>set({info:info}),
     LogOut : (()=>{
-        localStorage.removeItem('jwt');
+        localStorage.removeItem('access');
+        localStorage.removeItem('refresh');
         location.reload()
     }),
     Join:((name:string, id:string, pw:string,callBack:Function)=>{

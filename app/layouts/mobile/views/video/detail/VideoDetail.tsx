@@ -3,9 +3,11 @@
 import React, {useEffect, useRef, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import VideoComment from "@/app/layouts/mobile/views/video/detail/comment/VideoComment";
+import useTokenStore from "@/app/store/token";
 
 export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:boolean, setMuted:Function}) {
     const [videoSectionRef, inVideoView] = useInView();
+    const { accessToken } = useTokenStore()
     const videoBtnListRef = useRef<HTMLDivElement>(null);
     const clickableArea = useRef<HTMLDivElement>(null);
     const videoCaption = useRef<HTMLDivElement>(null)
@@ -13,6 +15,8 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
     const soundBtnRef = useRef<HTMLButtonElement>(null);
     const videoRef = useRef<HTMLVideoElement>(null)
     const videoCommentRef = useRef<HTMLDivElement>(null)
+
+    const [comments, setComments] = useState<any>();
 
     const [play, setPlay] = useState<boolean>(true)
     const [openComment,setOpenComment] = useState<boolean>(false)
@@ -59,6 +63,34 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
             }
         }
     };
+
+    useEffect(() => {
+        fetch(`/api/video/reply/list?videoCode=${props.video.idx}`,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+            }})
+            .then((response) => response.json())//읽어온 데이터를 json으로 변환
+            .then((json) => {
+                let tempComment:any = [];
+
+                json.map((e:any)=>{
+                    tempComment.push({
+                        content:e.content,
+                        date:  e.date,
+                        idx:   e.idx,
+                        likes: e.likes,
+                        midx:  e.midx,
+                        unLikes:e.unLikes,
+                        vidx:  e.vidx,
+                    })
+                })
+                setComments(tempComment)
+            })
+            .catch((err) => {console.log(err)});
+    }, []);
+
 
 
     useEffect(() => {
@@ -113,7 +145,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                 </button>
                 <button onClick={()=>setOpenComment(true)}>
                     <i className="fa-regular fa-comment-dots"></i>
-                    <span>{props.video.comments.length}</span>
+                    <span>{comments?.length}</span>
                 </button>
                 <button>
                     <i className="fa-solid fa-share"></i>
@@ -130,17 +162,10 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
 
             <div className="video_caption" ref={videoCaption}>
                 <div className="video_hashTag">
-                    {
-                        props.video?.hashtags?.map((hashtag, idx)=>{
-                            if(idx<4)
-                            return(
-                                <button style={{paddingRight:'5px'}} key={idx}>{hashtag}</button>
-                            )
-                        })
-                    }
+                    {props.video.hashTag}
                 </div>
                 <div className="video_uploader">
-                    {props.video.userName}
+                    {props.video.uname}
                 </div>
                 <div className="video_name">
                     {props.video.title}
@@ -149,7 +174,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     {props.video.description}
                 </div>
             </div>
-            <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={props.video.comments}/>
+            <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={comments}/>
         </div>
     )
 }

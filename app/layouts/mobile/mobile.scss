@@ -277,7 +277,19 @@
     height: 100vh;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
 
+element {
+    -ms-overflow-style: none; /* for Internet Explorer, Edge */
+    scrollbar-width: none; /* for Firefox */
+    overflow-y: scroll;
+}
+
+element::-webkit-scrollbar {
+    display: none; /* for Chrome, Safari, and Opera */
+}
 .swiper {
     position: absolute;
     z-index: var(--m-zIndex-video);

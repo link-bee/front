@@ -31,7 +31,7 @@ export default function VideoComment(props:{setOpenComment :Function,openComment
                     status?
                     <>
                         <div className="comment_avatar">
-                            <Image src="/images/man.jpg" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
+                            <Image src="/avatar.png" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
                         </div>
                         <InputEmoji
                             value={text}

@@ -73,7 +73,7 @@ export default function ProfileView(){
                 <div className={styles.m_myProfile_detail}>
 
                     <div className={styles.m_myProfile_avatar}>
-                        <Image src="/images/man.jpg" alt="man" width={80} height={80} style={{borderRadius:'50%'}}/>
+                        <Image src="/avatar.png" alt="man" width={80} height={80} style={{borderRadius:'50%'}}/>
                         <span style={{fontWeight:"bold"}}>@gun7728</span>
                     </div>
 

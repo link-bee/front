@@ -2,9 +2,10 @@ import styles from './login.module.scss'
 import React, {useEffect, useState} from "react";
 import useTokenStore from "@/app/store/token";
 import useUserStore from "@/app/store/user";
+import {jwtDecode} from "jwt-decode";
 
 export default function MobileLoginView(){
-    const { Login, setLoginFromOpen, setStatus, Join } = useUserStore()
+    const { Login, setLoginFromOpen, setStatus, Join, setUserInfo } = useUserStore()
     const { setAccessToken, setRefreshToken } = useTokenStore()
     const [loginType, setLoginType] = useState<string>('')
     const [id, setId] = useState<string>('');
@@ -57,6 +58,7 @@ export default function MobileLoginView(){
         setRefreshToken(token.refreshToken)
         setStatus(true);
         setLoginFromOpen(false);
+        setUserInfo(jwtDecode(token.accessToken))
     }
 
     useEffect(() => {
