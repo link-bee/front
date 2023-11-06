@@ -27,7 +27,7 @@ export default function Home() {
                 setStatus(true);
                 setAccessToken(localStorage.access)
                 setRefreshToken(localStorage.refresh)
-                setUserInfo(jwtDecode(localStorage.access))
+                setUserInfo(jwtDecode(localStorage?.access))
             }else{
                 fetch('/login/reissue',{method:"POST",
                     body: JSON.stringify({

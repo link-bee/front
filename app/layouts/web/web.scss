@@ -1,8 +1,33 @@
 .cover_wrap{
+    background: linear-gradient(45deg, Violet, Orange);
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
+
+    .cover_info{
+        position: absolute;
+        width: 800px;
+        height: 500px;
+        left: 200px;
+        transition: 0.5s ease;
+        opacity:1;
+
+        @media (max-width: 1500px)  {
+            width: 400px !important;
+            h1,h2{
+                transition: 0.5s ease;
+                opacity:1;
+            }
+
+            @media (max-width: 1200px)  {
+                h1,h2{
+                    transition: 0.5s ease;
+                    opacity:0;
+                }
+            }
+        }
+    }
 
 }
 .phone{

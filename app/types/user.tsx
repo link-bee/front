@@ -3,7 +3,7 @@ interface UserInfo {
     "auth": string,
     "linked": object[],
     "myLink": object[],
-    "likes": object[],
+    "likes": number[],
     "email": string,
     "id": number,
     "username": string,

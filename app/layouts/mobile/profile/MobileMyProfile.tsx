@@ -22,7 +22,6 @@ export default function MobileMyProfile(){
         getVideoList()
         getLikeList()
         getPrivateList()
-        console.log(info)
     }, []);
 
     const getVideoList = () => {

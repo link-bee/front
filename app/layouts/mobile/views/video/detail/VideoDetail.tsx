@@ -4,10 +4,13 @@ import React, {useEffect, useRef, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import VideoComment from "@/app/layouts/mobile/views/video/detail/comment/VideoComment";
 import useTokenStore from "@/app/store/token";
+import useUserStore from "@/app/store/user";
+import {jwtDecode} from "jwt-decode";
 
 export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:boolean, setMuted:Function}) {
     const [videoSectionRef, inVideoView] = useInView();
-    const { accessToken } = useTokenStore()
+    const { accessToken, refreshToken, setAccessToken,setRefreshToken } = useTokenStore()
+    const { info,setUserInfo } =useUserStore()
     const videoBtnListRef = useRef<HTMLDivElement>(null);
     const clickableArea = useRef<HTMLDivElement>(null);
     const videoCaption = useRef<HTMLDivElement>(null)
@@ -18,6 +21,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
 
     const [comments, setComments] = useState<any>();
 
+    const [likes, setLikes] = useState<number>(0)
     const [play, setPlay] = useState<boolean>(true)
     const [openComment,setOpenComment] = useState<boolean>(false)
 
@@ -89,8 +93,56 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                 setComments(tempComment)
             })
             .catch((err) => {console.log(err)});
+
+        setLikes(props.video.likes)
     }, []);
 
+    useEffect(()=>{
+        console.log(accessToken)
+    },[accessToken])
+    const likeVideo = () => {
+
+        fetch(`/api/video/like?vIdx=${props.video.idx}&likes=1&status=1&mIdx=${info.id}`,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+            }})
+            .then((response) => response.json())//읽어온 데이터를 json으로 변환
+            .then((json) => {
+                fetch(`/login/reissue`,{
+                    body: JSON.stringify({
+                        "accessToken": accessToken,
+                        "refreshToken": refreshToken,
+                    }),
+                    method:"POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: `Bearer ${accessToken}`,
+                    }})
+                    .then((response) => response.json())//읽어온 데이터를 json으로 변환
+                    .then((json) => {
+                        setAccessToken(json.accessToken)
+                        setRefreshToken(json.refreshToken)
+                        localStorage.setItem("access", json.accessToken);
+                        localStorage.setItem("refresh", json.refreshToken);
+
+                        setUserInfo(jwtDecode(json.accessToken))
+                        fetch(`/api/video/one?videoCode=${props.video.idx}`,{
+                            method:"POST",
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${accessToken}`,
+                            }})
+                            .then((response) => response.json())//읽어온 데이터를 json으로 변환
+                            .then((json) => {
+                                setLikes(json.likes)
+                            })
+                    })
+                    .catch((err) => {console.log(err)});
+            })
+            .catch((err) => {console.log(err)});
+    }
 
 
     useEffect(() => {
@@ -99,6 +151,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
             document.removeEventListener('click', onClickOutside, true);
         };
     });
+
 
     return(
         <div className="video_detail"
@@ -140,8 +193,8 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     </span>
                 </button>
                 <button>
-                    <i className="fa-solid fa-heart" style={{color:props.video.isLikes?"red":''}}></i>
-                    <span>{props.video.likes}</span>
+                    <i className="fa-solid fa-heart" style={{color:info.likes.includes(props.video.idx)?"red":''}} onClick={()=>{likeVideo()}}></i>
+                    <span>{likes}</span>
                 </button>
                 <button onClick={()=>setOpenComment(true)}>
                     <i className="fa-regular fa-comment-dots"></i>
