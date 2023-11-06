@@ -4,10 +4,12 @@ import React, {useEffect, useState} from "react";
 import {motion} from "framer-motion"
 import ProfileVideoList from "@/app/layouts/mobile/profile/list/ProfileVideoList";
 import useViewStore from "@/app/store/view";
+import useTokenStore from "@/app/store/token";
 
 export default function MobileMyProfile(){
     const [curList, setCurList] =useState<string>('video')
     const {setView} = useViewStore()
+    const { accessToken } = useTokenStore()
 
     //테스트용
     const [videoList, setVideoList] = useState<VideoInfo[]>([])
@@ -21,9 +23,21 @@ export default function MobileMyProfile(){
     }, []);
 
     const getVideoList = () => {
-        // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
-        // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
-        fetch('/video.json')
+        // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`,{
+        //       headers: {
+        //           Authorization: `Bearer ${accessToken}`,
+        //           // 'Content-Type': 'application/x-www-form-urlencoded',
+        //       }})
+        // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`,{{
+        //       headers: {
+        //           Authorization: `Bearer ${accessToken}`,
+        //           // 'Content-Type': 'application/x-www-form-urlencoded',
+        //       }})
+        fetch('/video.json',{
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
                 setVideoList([...json])
@@ -33,7 +47,11 @@ export default function MobileMyProfile(){
     const getLikeList = () => {
         // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
         // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
-        fetch('/video.json')
+        fetch('/video.json',{
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
                 setLikeList([...json])
@@ -43,7 +61,11 @@ export default function MobileMyProfile(){
     const getPrivateList = () => {
         // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
         // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
-        fetch('/video.json')
+        fetch('/video.json',{
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
                 setPrivateList([...json])

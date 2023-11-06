@@ -5,8 +5,10 @@ import VideoDetail from "@/app/layouts/web/views/video/detail/VideoDetail";
 import {Swiper, SwiperSlide} from "swiper/react";
 import {motion} from "framer-motion"
 import styles from './Video.module.scss'
+import useTokenStore from "@/app/store/token";
 
 export default function VideoView() {
+    const { accessToken } = useTokenStore()
     const [ref, inView] = useInView();
     const [page, setPage] = useState<number>(1)
     const [muted, setMuted] = useState<boolean>(true)
@@ -29,7 +31,11 @@ export default function VideoView() {
     const productFetch = () => {
         // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
         // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
-            fetch('/video.json')
+            fetch('/video.json',{
+                headers: {
+                    Authorization: `Bearer ${accessToken}`,
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
                 setVideoList([...videoList, ...json])

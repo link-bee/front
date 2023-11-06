@@ -4,8 +4,10 @@ import React, {useEffect, useState} from "react";
 import {motion} from "framer-motion"
 import useViewStore from "@/app/store/view";
 import ProfileVideoList from "@/app/layouts/web/views/profile/list/ProfileVideoList";
+import useTokenStore from "@/app/store/token";
 
 export default function ProfileView(){
+    const { accessToken } = useTokenStore()
     const [curList, setCurList] =useState<string>('video')
     const {setView} = useViewStore()
 
@@ -33,7 +35,11 @@ export default function ProfileView(){
     const getLikeList = () => {
         // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
         // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
-        fetch('/video.json')
+        fetch('/video.json',{
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
                 setLikeList([...json])
@@ -43,7 +49,11 @@ export default function ProfileView(){
     const getPrivateList = () => {
         // fetch(`https://6534c577e1b6f4c59046e9cf.mockapi.io/link/${page}`)
         // fetch(`https://gist.githubusercontent.com/deepakpk009/99fd994da714996b296f11c3c371d5ee/raw/28c4094ae48892efb71d5122c1fd72904088439b/media.json`)
-        fetch('/video.json')
+        fetch('/video.json',{
+            headers: {
+                Authorization: `Bearer ${accessToken}`,
+                // 'Content-Type': 'application/x-www-form-urlencoded',
+            }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
                 setPrivateList([...json])

@@ -22,8 +22,10 @@ export default function Home() {
             const payload : JwtPayload = jwtDecode(localStorage.jwt)
             const date = new Date(0);
             date.setUTCSeconds(payload.exp ? payload.exp : 0);
+
             if(date > new Date()){
-                setStatus(true)
+                console.log('로그인요청')
+                // setStatus(true)
             }else{
                 setStatus(false)
                 setAccessToken('')
