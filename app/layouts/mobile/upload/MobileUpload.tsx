@@ -103,6 +103,30 @@ export default function MobileUpload(){
                                 <input className={styles.title_input} type="text" placeholder={"제목"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setTitle(e.target.value)}/>
                                 <textarea className={styles.contents_input} placeholder={"내용"}  onChange={(e:React.ChangeEvent<HTMLTextAreaElement>)=>setContent(e.target.value)}/>
                                 <input className={styles.title_input} type="text" placeholder={"해쉬태그"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setHashTag(e.target.value)}/>
+                                <div style={{justifyContent:"space-between",display:"flex",alignItems:"center"}}>
+                                    <div>
+                                        <i className="fa-solid fa-globe"></i>
+                                        언어 선택
+                                    </div>
+                                    <div>
+                                        <input
+                                            id="Korean"
+                                            value={lang}
+                                            name="platform"
+                                            type="radio"
+                                            onChange={()=>setLang("Korean")}
+                                        />
+                                        Korean
+                                        <input
+                                            id="English"
+                                            value={lang}
+                                            name="platform"
+                                            type="radio"
+                                            onChange={()=>setLang("English")}
+                                        />
+                                        English
+                                    </div>
+                                </div>
                             </div>
                             <div className={styles.upload_thumb_wrap}>
                                 <label htmlFor="thumb">
@@ -123,81 +147,6 @@ export default function MobileUpload(){
                             </div>
                         </div>
                     </div>
-                    <ul className={styles.upload_sub}>
-                       {/*<li>*/}
-                       {/*    <div>*/}
-                       {/*        <i className="fa-solid fa-unlock"></i>*/}
-                       {/*        이 동영상을 시청할 수 있는 사람*/}
-                       {/*    </div>*/}
-                       {/*</li>*/}
-
-                        <li>
-                            <div style={{justifyContent:"space-between",display:"flex",alignItems:"center", width:"300px", height:"200px"}}>
-                                <div>
-                                <i className="fa-solid fa-globe"></i>
-                                언어 선택
-                                </div>
-                                <div>
-                                    <input
-                                        id="Korean"
-                                        value={lang}
-                                        name="platform"
-                                        type="radio"
-                                        onChange={()=>setLang("Korean")}
-                                    />
-                                    Korean
-                                    <input
-                                        id="English"
-                                        value={lang}
-                                        name="platform"
-                                        type="radio"
-                                        onChange={()=>setLang("English")}
-                                    />
-                                    English
-                                </div>
-                            </div>
-                        </li>
-                       {/*<li>*/}
-                       {/*    <div>*/}
-                       {/*        <i className="fa-solid fa-globe"></i>*/}
-                       {/*        번역 언어*/}
-                       {/*        <label className={styles.toggleControl}>*/}
-                       {/*            <input type="checkbox" />*/}
-                       {/*            kr/en*/}
-                       {/*            <span className={styles.control*/}
-
-                       {/*            }></span>*/}
-                       {/*        </label>*/}
-                       {/*    </div>*/}
-                       {/*</li>*/}
-
-                       {/*<li>*/}
-                       {/*    <div>*/}
-                       {/*        <i className="fa-solid fa-unlock"></i>*/}
-                       {/*        댓글 허용*/}
-                       {/*        <label className={styles.toggleControl}>*/}
-                       {/*            <input type="checkbox"  />*/}
-                       {/*            <span className={styles.control*/}
-
-                       {/*            }></span>*/}
-                       {/*        </label>*/}
-                       {/*    </div>*/}
-                       {/*</li>*/}
-
-                       {/*<li>*/}
-                       {/*    <div>*/}
-                       {/*        <i className="fa-solid fa-share"></i>*/}
-                       {/*        공유 허용*/}
-                       {/*        <label className={styles.toggleControl}>*/}
-                       {/*            <input type="checkbox" />*/}
-                       {/*            <span className={styles.control*/}
-
-                       {/*            }></span>*/}
-                       {/*        </label>*/}
-                       {/*    </div>*/}
-                       {/*</li>*/}
-
-                    </ul>
                     <button onClick={()=>post()} disabled={(!video || !image)}>업로드</button>
                 </div>
             </div>
