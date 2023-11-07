@@ -36,7 +36,7 @@ export default function ProfileVideoList(props:{videos:VideoInfo[]|null}){
                 :null
             }
             {selectedVideo && (
-                <VideoPopup videoUrl={selectedVideo.customUrl} onClose={closeVideoPopup} />
+                <VideoPopup videoId={selectedVideo.idx} videoUrl={selectedVideo.customUrl} onClose={closeVideoPopup} />
             )}
         </motion.div>
     )
