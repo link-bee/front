@@ -81,6 +81,7 @@
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            text-align: start;
 
         }
     }
@@ -195,7 +196,7 @@
         .comment_list_wrap{
             display: flex;
             flex-direction: column;
-            height: calc(50% - 50px);
+            height: calc(50% - 100px);
             overflow-y: scroll;
             overflow-x: hidden;
             padding: var(--m-padding-default);
@@ -261,6 +262,7 @@
             align-items: center;
             padding: 0 var(--m-padding-default);
             position: relative;
+            padding-top: 50px;
         }
 
         .comment_avatar{

@@ -3,7 +3,6 @@ import React, {useState} from "react";
 import Image from "next/image";
 import styles from "./ProfileVideoList.module.scss"
 import VideoPopup from "@/app/layouts/mobile/profile/list/popup/VideoPopUp";
-
 export default function ProfileVideoList(props:{videos:VideoInfo[]|null}){
     const [selectedVideo, setSelectedVideo] = useState<VideoInfo|null>(null);
 
@@ -36,7 +35,7 @@ export default function ProfileVideoList(props:{videos:VideoInfo[]|null}){
                 :null
             }
             {selectedVideo && (
-                <VideoPopup videoId={selectedVideo.idx} videoUrl={selectedVideo.customUrl} onClose={closeVideoPopup} />
+                <VideoPopup video={selectedVideo} videoId={selectedVideo.idx} videoUrl={selectedVideo.customUrl} onClose={closeVideoPopup} />
             )}
         </motion.div>
     )

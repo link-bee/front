@@ -10,7 +10,7 @@ export default function VideoComment(props:{vidx:number, setOpenComment :Functio
     const {accessToken} = useTokenStore()
 
     const reply = () => {
-        fetch(`/api/video/replyI?content=${text}&vIdx=${props.vidx}&mIdx=${info.id}&uname=${info.username}`,{
+        fetch(`/api/video/replyI?content=${text}&stringUidx=${props.vidx}&stringVidx=${info.id}`,{
         // fetch(`/api/video/replyI`,{
             method:"POST",
             headers: {

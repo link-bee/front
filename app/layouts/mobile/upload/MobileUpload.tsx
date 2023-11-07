@@ -2,19 +2,43 @@ import styles from "./MobileUpload.module.scss"
 import {motion} from "framer-motion"
 import useViewStore from "@/app/store/view";
 import Image from "next/image";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import useUserStore from "@/app/store/user";
 import useTokenStore from "@/app/store/token";
+import useEditStore from "@/app/store/edit";
 
 export default function MobileUpload(){
     const { info} = useUserStore()
     const { accessToken } = useTokenStore()
+    const {editFlag, editInfo} = useEditStore()
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
     const [hashTag, setHashTag] = useState<string>('')
     const [video, setVideo] = useState<any>();
     const [image, setImage] = useState<any>();
+    const [makeFileName, setMakeFileName] = useState<any>();
+    const [originVideoPath, setOriginVideoPath] = useState<any>();
+    const [pictureSaveName, setPictureSaveName] = useState<any>();
+    const [videoUrl, setVideoUrl] = useState<any>(null);
+    const [thumbUrl, setThumbUrl] = useState<any>(null);
+    const [originIdx, setOriginIdx] = useState<any>(null);
     const [lang,setLang] = useState<string>('Korean')
+
+    useEffect(() => {
+        if(editFlag){
+            let info = JSON.parse(JSON.stringify(editInfo))
+
+            setOriginIdx(info.idx)
+            setTitle(info.title)
+            setContent(info.description)
+            setHashTag(info.hashTag)
+            setMakeFileName(info.makeFileName)
+            setOriginVideoPath(info.originVideoPath)
+            setPictureSaveName(info.pictureSaveName)
+            setVideoUrl(info.customUrl)
+            setThumbUrl(info.customThumbUrl)
+        }
+    }, []);
 
     const uploadVideo = (e:any) => {
         let files: any = e.target.files[0]
@@ -30,8 +54,30 @@ export default function MobileUpload(){
         form.append("changeLanguage", lang);
         form.append("stringIdx", String(info.id));
         form.append("uname", String(info.username))
-        form.append("vFile", video, "video");
-        form.append("pFile", image, "image");
+
+        if(originIdx){
+            form.append("stringvIdx", originIdx);
+            form.append("makeFileName", makeFileName);
+            form.append("originVideoPath", originVideoPath);
+            form.append("pictureSaveName", pictureSaveName);
+
+            if(video && image){
+                form.append("vFile", video, "video");
+                form.append("pFile", image, "image");
+                form.delete("makeFileName");
+                form.delete("originVideoPath");
+                form.delete("pictureSaveName");
+            }else if(video) {
+                form.append("vFile", video, "video");
+                form.delete("originVideoPath");
+            }else if(image) {
+                form.append("pFile", image, "image");
+                form.delete("pictureSaveName");
+            }
+        }else{
+            form.append("vFile", video, "video");
+            form.append("pFile", image, "image");
+        }
 
         fetch('/api/video/upload',{
             body: form,
@@ -43,7 +89,7 @@ export default function MobileUpload(){
             }})
             .then(() => {
                 alert('업로드 되었습니다.')
-                location.reload()
+                // location.reload()
             })
             .catch((err) => {console.log(err)});
     }
@@ -84,8 +130,8 @@ export default function MobileUpload(){
 
                 <div className={styles.upload_video_section}>
                     {
-                        video&&
-                        <video width={'80%'} height={'80%'} src={URL.createObjectURL(video)} controls autoPlay />
+                        (video||videoUrl)&&
+                        <video width={'80%'} height={'80%'} src={videoUrl?videoUrl:URL.createObjectURL(video)} controls autoPlay />
                     }
                     <div className={styles.contents_btn}>
                         {/*<button>#해시태그</button>*/}
@@ -100,9 +146,9 @@ export default function MobileUpload(){
                     <div style={{paddingBottom:'15px', height:'250px'}}>
                         <div style={{display:"flex"}}>
                             <div>
-                                <input className={styles.title_input} type="text" placeholder={"제목"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setTitle(e.target.value)}/>
-                                <textarea className={styles.contents_input} placeholder={"내용"}  onChange={(e:React.ChangeEvent<HTMLTextAreaElement>)=>setContent(e.target.value)}/>
-                                <input className={styles.title_input} type="text" placeholder={"해쉬태그"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setHashTag(e.target.value)}/>
+                                <input className={styles.title_input} value={title} type="text" placeholder={"제목"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setTitle(e.target.value)}/>
+                                <textarea className={styles.contents_input} value={content} placeholder={"내용"}  onChange={(e:React.ChangeEvent<HTMLTextAreaElement>)=>setContent(e.target.value)}/>
+                                <input className={styles.title_input} value={hashTag} type="text" placeholder={"해쉬태그"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setHashTag(e.target.value)}/>
                                 <div style={{justifyContent:"space-between",display:"flex",alignItems:"center"}}>
 
                                     <div>
@@ -129,14 +175,14 @@ export default function MobileUpload(){
                                 <label htmlFor="thumb">
                                     <div className={styles.upload_thumb}>
                                         {
-                                            imageUrl===''?
+                                            (imageUrl==='' && !thumbUrl)?
                                                 <i className="fa-regular fa-image">
                                                     <div style={{display:"flex", justifyContent:"center",alignContent:"center"}}>
                                                         <span>썸네일 업로드</span>
                                                     </div>
                                                 </i>
                                                 :
-                                                <Image src={imageUrl} width={90} height={110}  alt="Thumbnail" />
+                                                <Image src={thumbUrl?thumbUrl:imageUrl} width={90} height={110}  alt="Thumbnail" />
                                         }
                                     </div>
                                 </label>
@@ -144,7 +190,7 @@ export default function MobileUpload(){
                             </div>
                         </div>
                     </div>
-                    <button onClick={()=>post()} disabled={(!video || !image)}>업로드</button>
+                    <button onClick={()=>post()} disabled={((!video || !image) && (!thumbUrl || !videoUrl))}>업로드</button>
                 </div>
             </div>
         </motion.div>
