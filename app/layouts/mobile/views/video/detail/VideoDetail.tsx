@@ -82,7 +82,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                 json.map((e:any)=>{
                     tempComment.push({
                         content:e.content,
-                        date:  e.date,
+                        uploadDate:  e.uploadDate,
                         idx:   e.idx,
                         likes: e.likes,
                         midx:  e.midx,
@@ -106,7 +106,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                 Authorization: `Bearer ${accessToken}`,
             }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
-            .then((json) => {
+            .then(() => {
                 fetch(`/login/reissue`,{
                     body: JSON.stringify({
                         "accessToken": accessToken,
@@ -224,7 +224,7 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     {props.video.description}
                 </div>
             </div>
-            <VideoComment setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={comments}/>
+            <VideoComment vidx={props.video.idx} setOpenComment={setOpenComment} openComment={openComment} setRef={videoCommentRef} comments={comments}/>
         </div>
     )
 }

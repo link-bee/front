@@ -8,6 +8,7 @@
 }
 
 .myProfile_top{
+  z-index: var(--m-zIndex-tope);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -35,7 +36,7 @@
 }
 .m_myProfile{
   top: 50px;
-  height: calc(100vh - 55px);
+  height: 100%;
   z-index: var(--m-zIndex-middle);
   position: absolute;
   width: 100%;
@@ -47,7 +48,7 @@
   }
   .m_myProfile_detail{
     width: 100%;
-    height: calc(100vh - 55px);
+    height: calc(100% - 50px);
     z-index: var(--m-zIndex-middle);
     display: flex;
     flex-direction: column;

@@ -1,13 +1,27 @@
-import React, {useEffect, useRef, useState} from "react";
-import InputEmoji from "react-input-emoji";
+import React, {useState} from "react";
 import Image from "next/image";
 import CommentList from "@/app/layouts/mobile/views/video/detail/comment/CommentList";
 import useUserStore from "@/app/store/user";
+import useTokenStore from "@/app/store/token";
 
-export default function VideoComment(props:{setOpenComment :Function,openComment:boolean, setRef:React.Ref<HTMLDivElement>, comments:VideoComments[]}){
+export default function VideoComment(props:{vidx:number, setOpenComment :Function,openComment:boolean, setRef:React.Ref<HTMLDivElement>, comments:VideoComments[]}){
     const [text, setText] = useState<string>('')
-    const {status, setLoginFromOpen} = useUserStore()
+    const {status, setLoginFromOpen, info} = useUserStore()
+    const {accessToken} = useTokenStore()
 
+    const reply = () => {
+        fetch(`/api/video/replyI?content=${text}&vIdx=${props.vidx}&mIdx=${info.id}&uname=${info.username}`,{
+        // fetch(`/api/video/replyI`,{
+            method:"POST",
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+            }})
+            .then((response) => response.json())//읽어온 데이터를 json으로 변환
+            .then((json) => {
+                console.log(json)
+            })
+    }
     return (
         <div className={props.openComment?'video_comment open':'video_comment close'} ref={props.setRef}>
             <div className="comment_top">
@@ -33,12 +47,24 @@ export default function VideoComment(props:{setOpenComment :Function,openComment
                         <div className="comment_avatar">
                             <Image src="/avatar.png" alt="man" width={40} height={40} style={{borderRadius:'25px'}}/>
                         </div>
-                        <InputEmoji
-                            value={text}
-                            onChange={setText}
-                            cleanOnEnter
-                            placeholder="Type a message"
+                        <input type={"text"}
+                               style={{width: '250px',height: '40px',paddingLeft: '10px',borderRadius: '10px',border: '1px solid black',marginRight:'20px',marginLeft:'20px'}}
+                               placeholder={"입력"}
+                               onChange={(e:React.ChangeEvent<HTMLInputElement>)=>{setText(e.target.value)}}
                         />
+                        <button style={{
+                            width: '40px',
+                            height: '40px',
+                            border: '1px solid black',
+                            borderRadius: '10px'}}
+                                onClick={()=>{reply()}}
+                        >등록</button>
+                        {/*<InputEmoji*/}
+                        {/*    value={text}*/}
+                        {/*    onChange={setText}*/}
+                        {/*    cleanOnEnter*/}
+                        {/*    placeholder="Type a message"*/}
+                        {/*/>*/}
                     </>
                     :
                     <>

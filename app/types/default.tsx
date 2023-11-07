@@ -21,7 +21,7 @@ interface VideoComments {
     userId:string,
     userName:string,
     content: string,
-    date: string,
+    uploadDate: string,
     likes: number,
     unLikes: boolean,
     midx:number,

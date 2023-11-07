@@ -149,19 +149,19 @@ export default function MobileLoginView(){
                                 </li>
 
                                 <li>
-                                    <button onClick={()=>setLoginType('google')}>
+                                    <button onClick={()=>alert('준비 중 입니다.')}>
                                         <span>Google로 계속 진행</span>
                                     </button>
                                 </li>
 
                                 <li>
-                                    <button onClick={()=>setLoginType('naver')}>
+                                    <button onClick={()=>alert('준비 중 입니다.')}>
                                         <span>Naver로 계속 진행</span>
                                     </button>
                                 </li>
 
                                 <li>
-                                    <button onClick={()=>setLoginType('kakao')}>
+                                    <button onClick={()=>alert('준비 중 입니다.')}>
                                         <span>KakaoTalk으로 계속 진행</span>
                                     </button>
                                 </li>

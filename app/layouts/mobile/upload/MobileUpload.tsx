@@ -85,7 +85,7 @@ export default function MobileUpload(){
                 <div className={styles.upload_video_section}>
                     {
                         video&&
-                        <video width={200} height={400} src={URL.createObjectURL(video)} controls autoPlay />
+                        <video width={'80%'} height={'80%'} src={URL.createObjectURL(video)} controls autoPlay />
                     }
                     <div className={styles.contents_btn}>
                         {/*<button>#해시태그</button>*/}
@@ -104,10 +104,7 @@ export default function MobileUpload(){
                                 <textarea className={styles.contents_input} placeholder={"내용"}  onChange={(e:React.ChangeEvent<HTMLTextAreaElement>)=>setContent(e.target.value)}/>
                                 <input className={styles.title_input} type="text" placeholder={"해쉬태그"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setHashTag(e.target.value)}/>
                                 <div style={{justifyContent:"space-between",display:"flex",alignItems:"center"}}>
-                                    <div>
-                                        <i className="fa-solid fa-globe"></i>
-                                        언어 선택
-                                    </div>
+
                                     <div>
                                         <input
                                             id="Korean"

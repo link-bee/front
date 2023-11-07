@@ -8,7 +8,6 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
 
 
     useEffect(() => {
-        var paging = [];
         if(props.comments == null)
             return;
 
@@ -64,7 +63,7 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
 
                                     <div className="comment_btn_list">
                                         <span style={{paddingRight:'10px', width:'300px',textAlign: 'start'}}>
-                                            {comment?.date}
+                                            {comment?.uploadDate}
                                         </span>
                                         {/*<button className="comment_reply_btn">*/}
                                         {/*    Reply*/}
@@ -73,26 +72,26 @@ export default function CommentList(props:{comments: VideoComments[] | null}){
                                         {/*    </div>*/}
                                         {/*</button>*/}
                                         <div>
-                                            {
-                                                comment.likes?
-                                                <button  style={{paddingRight:'15px'}}>
-                                                    <i className="fa-solid fa-heart"
-                                                       style={{color:"red", fontSize:'18px', paddingRight:'3px'}}></i>
-                                                    {comment.likes}
-                                                </button>
-                                                :
-                                                <button  style={{paddingRight:'15px'}}>
-                                                    <i className="fa-regular fa-heart"
-                                                       style={{color:"black", fontSize:'18px', paddingRight:'3px'}}></i>
-                                                    {comment.likes}
-                                                </button>
+                                            {/*{*/}
+                                            {/*    comment.likes?*/}
+                                            {/*    <button  style={{paddingRight:'15px'}}>*/}
+                                            {/*        <i className="fa-solid fa-heart"*/}
+                                            {/*           style={{color:"red", fontSize:'18px', paddingRight:'3px'}}></i>*/}
+                                            {/*        {comment.likes}*/}
+                                            {/*    </button>*/}
+                                            {/*    :*/}
+                                            {/*    <button  style={{paddingRight:'15px'}}>*/}
+                                            {/*        <i className="fa-regular fa-heart"*/}
+                                            {/*           style={{color:"black", fontSize:'18px', paddingRight:'3px'}}></i>*/}
+                                            {/*        {comment.likes}*/}
+                                            {/*    </button>*/}
 
-                                            }
-                                            <button>
-                                                <i className="fa-solid fa-heart-crack"
-                                                   style={{color: comment.unLikes?"red":"white", fontSize:'16px',
-                                                       textShadow:comment.unLikes?'':'0 0 3px black'}}></i>
-                                            </button>
+                                            {/*}*/}
+                                            {/*<button>*/}
+                                            {/*    <i className="fa-solid fa-heart-crack"*/}
+                                            {/*       style={{color: comment.unLikes?"red":"white", fontSize:'16px',*/}
+                                            {/*           textShadow:comment.unLikes?'':'0 0 3px black'}}></i>*/}
+                                            {/*</button>*/}
                                         </div>
                                     </div>
                                 </div>

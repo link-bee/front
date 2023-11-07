@@ -28,7 +28,7 @@
 .upload_main{
   padding: var(--m-padding-default);
   width: 100%;
-  height: calc(100vh - 55px);
+  height: calc(100% - 50px);
   background-color: white;
   display: flex;
   flex-direction: column;
@@ -38,13 +38,15 @@
 .upload_detail{
   display: flex;
   flex-direction: column;
-  height: calc(100% - 450px);
+  height: calc(35% - 50px);
+  margin: 10px;
+  width: 100%;
   //justify-content: center;
 }
 
 .upload_video_section{
   width: 250px;
-  height: 450px;
+  height: calc(60% - 50px);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -57,7 +59,7 @@
   border-radius: 5px;
   outline: none;
   padding-left: 10px;
-  border: 0;
+  border: 1px solid lightgray;
   margin-bottom: 10px;
 }
 .title_input:focus{
@@ -71,7 +73,7 @@
   border-radius: 5px;
   outline: none;
   padding-left: 10px;
-  border: 0;
+  border: 1px solid lightgray;
   margin-bottom: 10px;
   resize: none;
 }
