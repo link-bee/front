@@ -11,7 +11,8 @@ interface VideoInfo {
     likes:number,
     isLikes:boolean,
     comments:VideoComments[],
-};
+    customUrl:string,
+}
 
 interface VideoComments {
     idx: number,

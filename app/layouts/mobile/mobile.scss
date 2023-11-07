@@ -46,6 +46,7 @@
         }
     }
     .video_caption{
+        z-index: var(--m-zIndex-top);
         position: absolute;
         display: flex;
         flex-direction: column;
@@ -154,7 +155,7 @@
     .video_section{
         display: flex;
         position: absolute;
-        inset: 0px;
+        inset: 0;
         z-index: var(--zIndex-middle);
         pointer-events: none;
     }
@@ -178,7 +179,7 @@
             top: calc(100% - 600px);
         }
         &.close{
-            height: 0px;
+            height: 0;
             transition: 0.5s ease;
         }
 

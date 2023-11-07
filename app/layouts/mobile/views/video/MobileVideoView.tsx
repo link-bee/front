@@ -1,5 +1,5 @@
 'use client'
-import React, {FunctionComponent, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useInView} from "react-intersection-observer";
 import VideoDetail from "@/app/layouts/mobile/views/video/detail/VideoDetail";
 import {Swiper, SwiperSlide} from "swiper/react";
@@ -9,7 +9,6 @@ import useTokenStore from "@/app/store/token";
 export default function MobileVideoView() {
     const {accessToken} = useTokenStore()
     const [ref, inView] = useInView();
-    const [page, setPage] = useState<number>(1)
     const [muted, setMuted] = useState<boolean>(true)
     const [videoList, setVideoList] = useState<VideoInfo[]>([])
     const [swiper, setSwiper] = useState<any>();
@@ -37,12 +36,15 @@ export default function MobileVideoView() {
                 }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
-                setVideoList([...videoList, ...json])
-                // 요청 성공 시에 페이지에 1 카운트 해주기
-                // if(page===1){
-                //     setIsFirst(false);
-                // }
-                setPage((page) => page + 1)
+                let tempJson = [...json]
+                tempJson.map((e:any,idx:number)=>{
+                    if(e.originVideoPath.split('/')[6]){
+                        tempJson[idx].customUrl = `/file/${e.originVideoPath.split('/')[6]}/${e.makeFileName}`
+                    }else{
+                        tempJson[idx].customUrl = ''
+                    }
+                })
+                setVideoList([...videoList, ...tempJson])
             })
             .catch((err) => {console.log(err)});
     };

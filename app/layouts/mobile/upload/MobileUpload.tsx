@@ -2,10 +2,9 @@ import styles from "./MobileUpload.module.scss"
 import {motion} from "framer-motion"
 import useViewStore from "@/app/store/view";
 import Image from "next/image";
-import React, {ChangeEvent, useState} from "react";
+import React, { useState} from "react";
 import useUserStore from "@/app/store/user";
 import useTokenStore from "@/app/store/token";
-import {anchoredResizeCoordinatesAlgorithm} from "advanced-cropper";
 
 export default function MobileUpload(){
     const { info} = useUserStore()
@@ -13,11 +12,12 @@ export default function MobileUpload(){
     const [title, setTitle] = useState<string>('')
     const [content, setContent] = useState<string>('')
     const [hashTag, setHashTag] = useState<string>('')
-    const [files, setFile] = useState<any>();
-    const uploadVideo = (e:any) =>{
-        let target: any = e.target
+    const [video, setVideo] = useState<any>();
+    const [image, setImage] = useState<any>();
+
+    const uploadVideo = (e:any) => {
         let files: any = e.target.files[0]
-        setFile(files)
+        setVideo(files)
     }
 
     const post = () =>{
@@ -28,7 +28,8 @@ export default function MobileUpload(){
         form.append("description", content);
         form.append("changeLanguage", "korean");
         form.append("uidx", String(info.id));
-        form.append("vFile", files, "video");
+        form.append("vFile", video, "video");
+        form.append("pFile", image, "image");
 
         fetch('/api/video/upload',{
             body: form,
@@ -49,8 +50,8 @@ export default function MobileUpload(){
     const [imageUrl, setImageUrl] = useState<string>('');
 
     const uploadImage = (e:any) => {
-        let target: any = e.target
         let files: any = e.target.files[0]
+        setImage(files)
 
         var reader = new FileReader();
         reader.onload = function(event:any) {

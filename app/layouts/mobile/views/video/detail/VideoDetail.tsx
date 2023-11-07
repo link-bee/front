@@ -97,9 +97,6 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
         setLikes(props.video.likes)
     }, []);
 
-    useEffect(()=>{
-        console.log(accessToken)
-    },[accessToken])
     const likeVideo = () => {
 
         fetch(`/api/video/like?vIdx=${props.video.idx}&likes=1&status=1&mIdx=${info.id}`,{
@@ -152,7 +149,6 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
         };
     });
 
-
     return(
         <div className="video_detail"
              ref={videoSectionRef}>
@@ -164,10 +160,11 @@ export default function VideoDetail(props : {swiper:any,video:VideoInfo, muted:b
                     ref={videoRef}
                     width={"100%"}
                     controls={false}
+                    loop={true}
                     muted={props.muted}
                     className="video-player w-2/3 h-full aspect-square object-cover rounded-xl "
                 >
-                    <source src={props.video.url} type="video/webm" />
+                    <source src={props.video.customUrl} type="video/webm" />
                 </video>
             </div>
             {

@@ -60,7 +60,7 @@ const useUserStore = create<User>((set)=>({
             }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
-                console.log(json)
+                // console.log(json)
                 // localStorage.setItem("jwt", json.accessToken);
 
                 return callBack(json);

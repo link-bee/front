@@ -5,7 +5,6 @@ import {useEffect, useState} from "react";
 import MainView from "@/app/layouts/web/MainView";
 import './globals.scss'
 import {JwtPayload ,jwtDecode} from "jwt-decode";
-import {number} from "prop-types";
 import useUserStore from "@/app/store/user";
 import useTokenStore from "@/app/store/token";
 
@@ -39,11 +38,14 @@ export default function Home() {
                     }})
                     .then((response) => response.json())//읽어온 데이터를 json으로 변환
                     .then((json) => {
-                        console.log(json)
-
                         if(json.code==='401') {
                             localStorage.removeItem('access');
                             localStorage.removeItem('refresh');
+                        }else{
+                            setStatus(true);
+                            setAccessToken(localStorage.access)
+                            setRefreshToken(localStorage.refresh)
+                            setUserInfo(jwtDecode(localStorage?.access))
                         }
                     })
             }
