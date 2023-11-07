@@ -2,7 +2,7 @@ import styles from "./MobileUpload.module.scss"
 import {motion} from "framer-motion"
 import useViewStore from "@/app/store/view";
 import Image from "next/image";
-import React, { useState} from "react";
+import React, {useState} from "react";
 import useUserStore from "@/app/store/user";
 import useTokenStore from "@/app/store/token";
 
@@ -14,6 +14,7 @@ export default function MobileUpload(){
     const [hashTag, setHashTag] = useState<string>('')
     const [video, setVideo] = useState<any>();
     const [image, setImage] = useState<any>();
+    const [lang,setLang] = useState<string>('Korean')
 
     const uploadVideo = (e:any) => {
         let files: any = e.target.files[0]
@@ -26,8 +27,8 @@ export default function MobileUpload(){
         form.append("hashTag", hashTag);
         form.append("content", "");
         form.append("description", content);
-        form.append("changeLanguage", "korean");
-        form.append("uidx", String(info.id));
+        form.append("changeLanguage", lang);
+        form.append("stringIdx", String(info.id));
         form.append("uname", String(info.username))
         form.append("vFile", video, "video");
         form.append("pFile", image, "image");
@@ -40,9 +41,9 @@ export default function MobileUpload(){
                 Authorization: `Bearer ${accessToken}`,
                 // 'Content-Type': 'application/x-www-form-urlencoded',
             }})
-            .then((response) => response.json())//읽어온 데이터를 json으로 변환
-            .then((json) => {
-                console.log(json)
+            .then(() => {
+                alert('업로드 되었습니다.')
+                location.reload()
             })
             .catch((err) => {console.log(err)});
     }
@@ -81,8 +82,22 @@ export default function MobileUpload(){
 
             <div className={styles.upload_main}>
 
+                <div className={styles.upload_video_section}>
+                    {
+                        video&&
+                        <video width={200} height={400} src={URL.createObjectURL(video)} controls autoPlay />
+                    }
+                    <div className={styles.contents_btn}>
+                        {/*<button>#해시태그</button>*/}
+                        <label htmlFor="file">
+                            <div className={styles.upload_video}><i className="fa-solid fa-video"></i> 동영상 업로드</div>
+                        </label>
+                        <input type="file" name="file" style={{display:"none"}} id="file"  accept="video/*"  onChange={(e)=>{uploadVideo(e)}}/>
+                    </div>
+                </div>
+
                 <div  className={styles.upload_detail}>
-                    <div style={{paddingBottom:'15px'}}>
+                    <div style={{paddingBottom:'15px', height:'250px'}}>
                         <div style={{display:"flex"}}>
                             <div>
                                 <input className={styles.title_input} type="text" placeholder={"제목"} onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setTitle(e.target.value)}/>
@@ -107,66 +122,83 @@ export default function MobileUpload(){
                                 <input  accept="image/*" type="file" name="thumb" id="thumb" style={{display:"none"}} onChange={(e)=>{uploadImage(e)}}/>
                             </div>
                         </div>
-
-                        <div className={styles.contents_btn}>
-                            {/*<button>#해시태그</button>*/}
-                            <label htmlFor="file">
-                                <div className={styles.upload_video}><i className="fa-solid fa-video"></i> 동영상 업로드</div>
-                            </label>
-                            <input type="file" name="file" style={{display:"none"}} id="file"  accept="video/*"  onChange={(e)=>{uploadVideo(e)}}/>
-                            <div className={styles.upload_video}>{video?.name}</div>
-                        </div>
                     </div>
                     <ul className={styles.upload_sub}>
-                       <li>
-                           <div>
-                               <i className="fa-solid fa-unlock"></i>
-                               이 동영상을 시청할 수 있는 사람
-                           </div>
-                       </li>
+                       {/*<li>*/}
+                       {/*    <div>*/}
+                       {/*        <i className="fa-solid fa-unlock"></i>*/}
+                       {/*        이 동영상을 시청할 수 있는 사람*/}
+                       {/*    </div>*/}
+                       {/*</li>*/}
 
-                       <li>
-                           <div>
-                               <i className="fa-solid fa-globe"></i>
-                               번역 언어
-                               <label className={styles.toggleControl}>
-                                   <input type="checkbox" />
-                                   kr/en
-                                   <span className={styles.control
+                        <li>
+                            <div style={{justifyContent:"space-between",display:"flex",alignItems:"center", width:"300px", height:"200px"}}>
+                                <div>
+                                <i className="fa-solid fa-globe"></i>
+                                언어 선택
+                                </div>
+                                <div>
+                                    <input
+                                        id="Korean"
+                                        value={lang}
+                                        name="platform"
+                                        type="radio"
+                                        onChange={()=>setLang("Korean")}
+                                    />
+                                    Korean
+                                    <input
+                                        id="English"
+                                        value={lang}
+                                        name="platform"
+                                        type="radio"
+                                        onChange={()=>setLang("English")}
+                                    />
+                                    English
+                                </div>
+                            </div>
+                        </li>
+                       {/*<li>*/}
+                       {/*    <div>*/}
+                       {/*        <i className="fa-solid fa-globe"></i>*/}
+                       {/*        번역 언어*/}
+                       {/*        <label className={styles.toggleControl}>*/}
+                       {/*            <input type="checkbox" />*/}
+                       {/*            kr/en*/}
+                       {/*            <span className={styles.control*/}
 
-                                   }></span>
-                               </label>
-                           </div>
-                       </li>
+                       {/*            }></span>*/}
+                       {/*        </label>*/}
+                       {/*    </div>*/}
+                       {/*</li>*/}
 
-                       <li>
-                           <div>
-                               <i className="fa-solid fa-unlock"></i>
-                               댓글 허용
-                               <label className={styles.toggleControl}>
-                                   <input type="checkbox"  />
-                                   <span className={styles.control
+                       {/*<li>*/}
+                       {/*    <div>*/}
+                       {/*        <i className="fa-solid fa-unlock"></i>*/}
+                       {/*        댓글 허용*/}
+                       {/*        <label className={styles.toggleControl}>*/}
+                       {/*            <input type="checkbox"  />*/}
+                       {/*            <span className={styles.control*/}
 
-                                   }></span>
-                               </label>
-                           </div>
-                       </li>
+                       {/*            }></span>*/}
+                       {/*        </label>*/}
+                       {/*    </div>*/}
+                       {/*</li>*/}
 
-                       <li>
-                           <div>
-                               <i className="fa-solid fa-share"></i>
-                               공유 허용
-                               <label className={styles.toggleControl}>
-                                   <input type="checkbox" />
-                                   <span className={styles.control
+                       {/*<li>*/}
+                       {/*    <div>*/}
+                       {/*        <i className="fa-solid fa-share"></i>*/}
+                       {/*        공유 허용*/}
+                       {/*        <label className={styles.toggleControl}>*/}
+                       {/*            <input type="checkbox" />*/}
+                       {/*            <span className={styles.control*/}
 
-                                   }></span>
-                               </label>
-                           </div>
-                       </li>
+                       {/*            }></span>*/}
+                       {/*        </label>*/}
+                       {/*    </div>*/}
+                       {/*</li>*/}
 
                     </ul>
-                    <button onClick={()=>post()}>업로드</button>
+                    <button onClick={()=>post()} disabled={(!video || !image)}>업로드</button>
                 </div>
             </div>
         </motion.div>

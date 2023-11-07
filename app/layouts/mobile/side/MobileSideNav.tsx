@@ -1,4 +1,4 @@
-import React, {useEffect, useRef, useState} from "react";
+import React, {useEffect, useRef} from "react";
 import styles from "./MobileSideNav.module.scss"
 import useUserStore from "@/app/store/user";
 import useViewStore from "@/app/store/view";
@@ -54,12 +54,12 @@ export default function MobileSideNav(props:sideOpenProps){
                                 홈
                             </button>
                         </li>
-                        <li>
-                            <button className={styles.link_btn}>
-                                <i className="fa-solid fa-link"></i>
-                                링크
-                            </button>
-                        </li>
+                        {/*<li>*/}
+                        {/*    <button className={styles.link_btn}>*/}
+                        {/*        <i className="fa-solid fa-link"></i>*/}
+                        {/*        링크*/}
+                        {/*    </button>*/}
+                        {/*</li>*/}
 
                     </ul>
                 </div>

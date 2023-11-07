@@ -31,12 +31,24 @@
   height: calc(100vh - 55px);
   background-color: white;
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
 }
 .upload_detail{
   display: flex;
   flex-direction: column;
+  height: calc(100% - 450px);
   //justify-content: center;
+}
+
+.upload_video_section{
+  width: 250px;
+  height: 450px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .title_input{
   width: 200px;
@@ -119,7 +131,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 70px;
+    width: 20px;
     height: 25px;
     border: 1px solid lightgray;
     font-size: var(--m-font-small);
@@ -129,8 +141,8 @@
     display: flex;
     justify-content: center;
     align-content: center;
-    width: 100px;
-    height: 25px;
+    width: 150px;
+    height: 40px;
     border: 1px solid lightgray;
     font-size: var(--m-font-small);
     margin: 0 var(--m-padding-micro);
@@ -142,6 +154,7 @@
   flex-direction: column;
   justify-content: center;
   align-self: center;
+  height: 100px;
 }
 
 .toggle-control {
