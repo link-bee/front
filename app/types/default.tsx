@@ -12,6 +12,8 @@ interface VideoInfo {
     isLikes:boolean,
     comments:VideoComments[],
     customUrl:string,
+    pictureSaveName:string,
+    customThumbUrl:string,
 }
 
 interface VideoComments {

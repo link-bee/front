@@ -124,11 +124,11 @@ export default function MobileLoginView(){
                                 <ul>
                                     <li>
                                         <input onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setId(e.target.value)} type={"text"} placeholder="이메일"/>
-                                        <span>아이디 찾기</span>
+                                        <span> </span>
                                     </li>
                                     <li>
                                         <input onChange={(e:React.ChangeEvent<HTMLInputElement>)=>setPw(e.target.value)} type={"password"} placeholder="비밀번호"/>
-                                        <span>비밀번호 찾기</span>
+                                        <span> </span>
                                     </li>
                                 </ul>
                             </div>

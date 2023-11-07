@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./VideoPopup.module.scss";
 
 export default function  VideoPopup(props:{ videoUrl:string, onClose:Function }){
+    console.log(props.videoUrl)
     return (
         <div className={styles.video_popup_wrap}>
             <div className={styles.video_popup}>

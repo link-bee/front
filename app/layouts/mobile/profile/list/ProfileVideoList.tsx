@@ -28,7 +28,7 @@ export default function ProfileVideoList(props:{videos:VideoInfo[]|null}){
                     return(
                         <div className={styles.profile_video} key={idx}>
                             <button onClick={() => handleVideoClick(video)}>
-                                <Image src={video.thumb} alt="Main Logo" width="1000" height="1000"/>
+                                <Image src={video.customThumbUrl} alt="Main Logo" width="1000" height="1000"/>
                             </button>
                         </div>
                     )
@@ -36,7 +36,7 @@ export default function ProfileVideoList(props:{videos:VideoInfo[]|null}){
                 :null
             }
             {selectedVideo && (
-                <VideoPopup videoUrl={selectedVideo.url} onClose={closeVideoPopup} />
+                <VideoPopup videoUrl={selectedVideo.customUrl} onClose={closeVideoPopup} />
             )}
         </motion.div>
     )

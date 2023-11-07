@@ -33,7 +33,17 @@ export default function MobileMyProfile(){
             }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
-                setVideoList([...json])
+                let tempJson = [...json]
+                tempJson.map((e:any,idx:number)=>{
+                    if(e.originVideoPath.split('/')[6]){
+                        tempJson[idx].customThumbUrl = `/file/${e.originVideoPath.split('/')[6]}/${e.pictureSaveName}`
+                        tempJson[idx].customUrl = `/file/${e.originVideoPath.split('/')[6]}/${e.makeFileName}`
+                    }else{
+                        tempJson[idx].customThumbUrl = ''
+                        tempJson[idx].customUrl = ''
+                    }
+                })
+                setVideoList([...tempJson])
             })
             .catch((err) => {console.log(err)});
     };
@@ -46,7 +56,18 @@ export default function MobileMyProfile(){
             }})
             .then((response) => response.json())//읽어온 데이터를 json으로 변환
             .then((json) => {
-                setLikeList([...json])
+                let tempJson = [...json]
+                tempJson.map((e:any,idx:number)=>{
+                    if(e.originVideoPath.split('/')[6]){
+                        tempJson[idx].customThumbUrl = `/file/${e.originVideoPath.split('/')[6]}/${e.pictureSaveName}`
+                        tempJson[idx].customUrl = `/file/${e.originVideoPath.split('/')[6]}/${e.makeFileName}`
+                    }else{
+                        tempJson[idx].customThumbUrl = ''
+                        tempJson[idx].customUrl = ''
+                    }
+                })
+                console.log(tempJson)
+                setLikeList([...tempJson])
             })
             .catch((err) => {console.log(err)});
     };
@@ -107,9 +128,9 @@ export default function MobileMyProfile(){
                             <li>좋아요</li>
                         </ul>
                     </div>
-                    <div className={styles.m_myProfile_btn_list}>
-                        <button>프로필 편집</button>
-                    </div>
+                    {/*<div className={styles.m_myProfile_btn_list}>*/}
+                    {/*    <button>프로필 편집</button>*/}
+                    {/*</div>*/}
                     <div className={styles.m_myProfile_introduce}>
                         <span>
 

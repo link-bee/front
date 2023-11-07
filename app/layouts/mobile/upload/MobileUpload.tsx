@@ -28,6 +28,7 @@ export default function MobileUpload(){
         form.append("description", content);
         form.append("changeLanguage", "korean");
         form.append("uidx", String(info.id));
+        form.append("uname", String(info.username))
         form.append("vFile", video, "video");
         form.append("pFile", image, "image");
 
@@ -113,6 +114,7 @@ export default function MobileUpload(){
                                 <div className={styles.upload_video}><i className="fa-solid fa-video"></i> 동영상 업로드</div>
                             </label>
                             <input type="file" name="file" style={{display:"none"}} id="file"  accept="video/*"  onChange={(e)=>{uploadVideo(e)}}/>
+                            <div className={styles.upload_video}>{video?.name}</div>
                         </div>
                     </div>
                     <ul className={styles.upload_sub}>
