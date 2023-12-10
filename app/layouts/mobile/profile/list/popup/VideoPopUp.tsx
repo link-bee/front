@@ -21,6 +21,26 @@ export default function  VideoPopup(props:{video:VideoInfo, videoId:number,video
             })
     }
 
+    const transVideo = () => {
+        let param = {
+
+        }
+        fetch(`/vf/getVtoTextContvert`,{method:"POST",
+            body: JSON.stringify({
+                "fname": "sim",
+                "lng": "korean",
+                "time": 5
+            }),
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+            }})
+            .then((response) => response.json())//읽어온 데이터를 json으로 변환
+            .then((json) => {
+                console.log(json)
+            })
+    }
+
     return (
         <div className={styles.video_popup_wrap}>
             <div className={styles.video_popup}>
@@ -44,6 +64,9 @@ export default function  VideoPopup(props:{video:VideoInfo, videoId:number,video
                             deleteVideo()
                             }}>
                             <i className="fa-solid fa-trash"></i>
+                        </button>
+                        <button className={styles.trans} onClick={()=>transVideo()}>
+                            <i className="fa-solid fa-language"></i>
                         </button>
                     </div>
                 </div>
